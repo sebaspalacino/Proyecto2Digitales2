@@ -9,7 +9,7 @@ parameter BITNUMBER =8;
 parameter LENGTH =8;
 
 //Wires
-wire clk, reset, Fifo_rd, Fifo_wr, Fifo_rd_error, Fifo_wr_error;
+wire clk, reset, Fifo_rd, Fifo_wr, Fifo_rd_error, Fifo_wr_error, Fifo_error;
 wire [BITNUMBER-1:0] Fifo_Data_in;
 wire [BITNUMBER-1:0] Fifo_Data_out;
 
@@ -20,6 +20,7 @@ fifo fifo_(/*AUTOINST*/
 	   .Fifo_Data_out		(Fifo_Data_out[BITNUMBER-1:0]),
 	   .Fifo_rd_error		(Fifo_rd_error),
 	   .Fifo_wr_error		(Fifo_wr_error),
+	   .Fifo_error			(Fifo_error),
 	   .almost_full			(almost_full),
 	   .almost_empty		(almost_empty),
 	   // Inputs

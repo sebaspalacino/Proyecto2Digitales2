@@ -26,7 +26,7 @@ YOSYS1:
 	# sed -i 's/estado/estado_est/g' $(TEMP01)
 	# sed -i 's/word_box/word_box_est/g' $(TEMP01)
 wave:
-	gtkwave $(TARGET1)
+	gtkwave $(TARGET4)
 
 clean:
 	rm -f $(TARGET2) $(TARGET1)
