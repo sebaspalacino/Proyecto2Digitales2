@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Wed Oct 28 19:33:54 2020
+[*] Wed Oct 28 19:49:32 2020
 [*]
 [dumpfile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/FIFO/resultados.vcd"
-[dumpfile_mtime] "Wed Oct 28 19:31:10 2020"
-[dumpfile_size] 141251
+[dumpfile_mtime] "Wed Oct 28 19:49:15 2020"
+[dumpfile_size] 143736
 [savefile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/FIFO/pruebas.gtkw"
 [timestart] 0
-[size] 1360 740
+[size] 1920 1025
 [pos] -1 -1
-*-15.759567 75700 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.759567 66800 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] BancoPruebas.
 [treeopen] BancoPruebas.fifo_.
 [sst_width] 223
@@ -26,6 +26,8 @@ BancoPruebas.Fifo_rd
 @22
 BancoPruebas.Fifo_Data_out[7:0]
 BancoPruebas.fifo_est.Fifo_Data_out_est[7:0]
+@29
+BancoPruebas.fifo_.valid_read
 @28
 BancoPruebas.Fifo_empty
 BancoPruebas.fifo_est.Fifo_empty_est
@@ -40,9 +42,7 @@ BancoPruebas.fifo_est.Fifo_full_est
 BancoPruebas.fifo_est.Fifo_rd_error_est
 BancoPruebas.fifo_est.Fifo_wr_error_est
 BancoPruebas.fifo_.Fifo_error
-@29
 BancoPruebas.fifo_est.Fifo_error_est
-@28
 BancoPruebas.fifo_.almost_full
 BancoPruebas.fifo_est.almost_full_est
 BancoPruebas.fifo_.almost_empty

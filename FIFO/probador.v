@@ -101,7 +101,22 @@ initial begin
 	@(posedge clk)
 	@(posedge clk)
 	@(posedge clk)
-
+	Fifo_rd <=0;
+	@(posedge clk)
+	@(posedge clk)
+	Fifo_wr <= 1; 
+	Fifo_Data_in <= 'hF;
+	Fifo_rd <= 1;
+	@(posedge clk)
+	Fifo_rd <=0;
+	Fifo_wr <= 0;
+	@(posedge clk)
+	@(posedge clk)
+	@(posedge clk)
+	Fifo_rd <=1;
+		@(posedge clk)
+	@(posedge clk)
+	@(posedge clk)
 	$finish;	
 end
 
