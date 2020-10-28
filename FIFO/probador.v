@@ -38,12 +38,15 @@ initial begin
 	@(posedge clk);
 	Fifo_Data_in <= 1;
 	@(posedge clk);
-	Fifo_Data_in <= 2;
+	Fifo_Data_in <= 'hAA;
 	Fifo_wr <= 0;
 	@(posedge clk);
+	Fifo_Data_in <= 'hBB;
 	Fifo_rd <= 1;
 	@(posedge clk);
+	Fifo_Data_in <= 'hCC;
 	@(posedge clk); // leer dos datos
+	Fifo_Data_in <= 2;
 	Fifo_wr <= 1;
 	@(posedge clk);
 	Fifo_Data_in <= 3;
