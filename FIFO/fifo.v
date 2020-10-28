@@ -14,17 +14,17 @@ module fifo #(parameter BITNUMBER = 8,
   output reg Fifo_wr_error,
   output reg Fifo_error,
   output reg almost_full, 
+  //output reg [2:0] rd_ptr,
   output reg almost_empty
   );
 
 reg to_empty, q_wt, q_rd;
-reg [(LENGTH/2)-2:0] wr_ptr, rd_ptr, q_w, q_r;
+reg [(LENGTH/2)-2:0] rd_ptr, wr_ptr,  q_w, q_r;
 reg [(LENGTH/2)-1:0] elementos, crecimiento;
 wire [BITNUMBER-1:0] q1;
 reg [BITNUMBER-1:0] q0;
-integer i, wptr, rptr;
+
 always @(posedge clk) begin
-    //Fifo_Data_out <= q1;
     if (reset) begin
         {wr_ptr, rd_ptr, Fifo_rd_error, Fifo_wr_error} <= 0;
         elementos <= 0 ;
@@ -34,6 +34,8 @@ always @(posedge clk) begin
         Fifo_Data_out <= 0;
         q_w <= 0;
         q_wt <= 0;
+        Fifo_empty <= 0;
+        Fifo_full <= 0;
     end
     else begin
         q_w <= wr_ptr;
@@ -87,27 +89,34 @@ always @(*) begin
     Fifo_full = 0;
     {almost_empty, almost_full} = 0;
     Fifo_error = 0;
-    if(elementos == 0) begin
-        if (to_empty) begin
-            Fifo_empty = 1;
-            to_empty = 1;
-            //wr_ptr = 0;
-            //rd_ptr = 0;
-        end
+    if (reset) begin
+        elementos = 0;
+        Fifo_empty = 0;
+        Fifo_full = 0;
+        {almost_empty, almost_full} = 0;
+        to_empty = 0;
+    end
+    else begin
+        if(elementos == 0) begin
+            if (to_empty) begin
+                Fifo_empty = 1;
+                to_empty = 1;
+                //wr_ptr = 0;
+                //rd_ptr = 0;
+            end
         else 
             Fifo_full = 1;
             //to_empty = 0;
     end
     if(elementos == 1) begin
         almost_empty = 1;
-    end;
+    end
     if(elementos == 7) begin
         almost_full = 1;
-    end;
-    Fifo_error = Fifo_rd_error | Fifo_wr_error;
+    end
+    Fifo_error = Fifo_rd_error | Fifo_wr_error; 
+    end
 end
-
-
 
 memoria memoria(.data_in	(q0),
 		.data_out	(q1),
