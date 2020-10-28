@@ -1,6 +1,7 @@
 module probador #(parameter BITNUMBER =10,
 		parameter LENGTH = 8)
 (input [BITNUMBER-1:0] data_out,
+	input [BITNUMBER-1:0] data_out_estr,
 	output reg reset,
 	output reg clk,
 	output reg read,
@@ -41,19 +42,19 @@ initial begin
 	data_in<=4;
 	ptr_read<=2;
 	read<=1;
-	ptr_write<=1;//orignalmente era 0
+	ptr_write<=4;//orignalmente era 0
 	write<=1;
 	@(posedge clk);
 	data_in<=5;
 	ptr_read<=3;
 	read<=1;
-	ptr_write<=1;
+	ptr_write<=5;
 	write<=1;	//Empezamos una mini prueba
-	@(posedge clk);
+	@(posedge clk); //Aqui hay problema con el data out ---- CORRECCION: YA SE RESOLVIO. AGARRABA ANTERIORMENTE PUNTEROS NULOS
 	data_in<=6;
 	ptr_read<=4;
 	read<=1;
-	ptr_write<=2;
+	ptr_write<=6;
 	write<=1; //Extendemos la senal
 	@(posedge clk);
 	data_in<=7;
