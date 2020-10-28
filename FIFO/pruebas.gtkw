@@ -1,19 +1,19 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Wed Oct 28 07:52:48 2020
+[*] Wed Oct 28 19:49:32 2020
 [*]
 [dumpfile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/FIFO/resultados.vcd"
-[dumpfile_mtime] "Wed Oct 28 07:52:37 2020"
-[dumpfile_size] 5482
+[dumpfile_mtime] "Wed Oct 28 19:49:15 2020"
+[dumpfile_size] 143736
 [savefile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/FIFO/pruebas.gtkw"
 [timestart] 0
-[size] 1360 740
+[size] 1920 1025
 [pos] -1 -1
-*-15.759567 230200 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.759567 66800 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] BancoPruebas.
 [treeopen] BancoPruebas.fifo_.
 [sst_width] 223
-[signals_width] 215
+[signals_width] 236
 [sst_expanded] 1
 [sst_vpaned_height] 134
 @28
@@ -25,26 +25,27 @@ BancoPruebas.Fifo_wr
 BancoPruebas.Fifo_rd
 @22
 BancoPruebas.Fifo_Data_out[7:0]
+BancoPruebas.fifo_est.Fifo_Data_out_est[7:0]
+@29
+BancoPruebas.fifo_.valid_read
 @28
 BancoPruebas.Fifo_empty
+BancoPruebas.fifo_est.Fifo_empty_est
 BancoPruebas.Fifo_full
-@29
+BancoPruebas.fifo_est.Fifo_full_est
 BancoPruebas.Fifo_rd_error
-@28
 BancoPruebas.Fifo_wr_error
-BancoPruebas.almost_empty
-BancoPruebas.almost_full
-BancoPruebas.Fifo_error
-@22
-BancoPruebas.probador_.Fifo_Data_in[7:0]
-BancoPruebas.probador_.Fifo_Data_out[7:0]
-@28
-BancoPruebas.fifo_.memoria.ptr_read[2:0]
-BancoPruebas.fifo_.memoria.ptr_write[2:0]
-BancoPruebas.fifo_.rd_ptr[2:0]
-BancoPruebas.fifo_.to_empty
-@22
-BancoPruebas.fifo_.elementos[3:0]
-BancoPruebas.fifo_.crecimiento[3:0]
+BancoPruebas.fifo_.Fifo_empty
+BancoPruebas.fifo_est.Fifo_empty_est
+BancoPruebas.fifo_.Fifo_full
+BancoPruebas.fifo_est.Fifo_full_est
+BancoPruebas.fifo_est.Fifo_rd_error_est
+BancoPruebas.fifo_est.Fifo_wr_error_est
+BancoPruebas.fifo_.Fifo_error
+BancoPruebas.fifo_est.Fifo_error_est
+BancoPruebas.fifo_.almost_full
+BancoPruebas.fifo_est.almost_full_est
+BancoPruebas.fifo_.almost_empty
+BancoPruebas.fifo_est.almost_empty_est
 [pattern_trace] 1
 [pattern_trace] 0

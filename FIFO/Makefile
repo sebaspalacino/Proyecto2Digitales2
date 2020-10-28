@@ -17,14 +17,19 @@ fifo: YOSYS1
 
 YOSYS1:
 	@echo "Sintetizando..."
-	# yosys -s synth.tcl
-	# sed -i 's/maquina/maquina_est/g' $(TEMP01)
-	# sed -i 's/data_out/data_out_est/g' $(TEMP01)
-	# sed -i 's/control/control_est/g' $(TEMP01)
-	# sed -i 's/error/error_est/g' $(TEMP01)
-	# sed -i 's/nxt_err/nxt_err_est/g' $(TEMP01)
-	# sed -i 's/estado/estado_est/g' $(TEMP01)
-	# sed -i 's/word_box/word_box_est/g' $(TEMP01)
+	yosys -s fifo_synth.tcl
+	sed -i 's/fifo/fifo_est/g' $(TEMP01)
+	sed -i 's/memoria/memoria_est/g' $(TEMP01)
+	sed -i 's/Fifo_Data_out/Fifo_Data_out_est/g' $(TEMP01)
+	sed -i 's/Fifo_full/Fifo_full_est/g' $(TEMP01)
+	sed -i 's/Fifo_empty/Fifo_empty_est/g' $(TEMP01)
+	sed -i 's/Fifo_error/Fifo_error_est/g' $(TEMP01)
+	sed -i 's/Fifo_rd_error/Fifo_rd_error_est/g' $(TEMP01)
+	sed -i 's/Fifo_wr_error/Fifo_wr_error_est/g' $(TEMP01)
+	sed -i 's/almost_full/almost_full_est/g' $(TEMP01)
+	sed -i 's/almost_empty/almost_empty_est/g' $(TEMP01)
+	#sed -i 's/rd_ptr/rd_ptr_est/g' $(TEMP01)
+
 wave:
 	gtkwave $(TARGET4)
 
