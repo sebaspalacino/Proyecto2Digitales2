@@ -28,7 +28,7 @@ YOSYS1:
 	sed -i 's/Fifo_wr_error/Fifo_wr_error_est/g' $(TEMP01)
 	sed -i 's/almost_full/almost_full_est/g' $(TEMP01)
 	sed -i 's/almost_empty/almost_empty_est/g' $(TEMP01)
-	#sed -i 's/rd_ptr/rd_ptr_est/g' $(TEMP01)
+	sed -i 's/valid_read/valid_read_est/g' $(TEMP01)
 
 wave:
 	gtkwave $(TARGET4)
