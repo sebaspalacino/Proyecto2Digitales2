@@ -1,7 +1,7 @@
 `include "memoria.v"
 
-module fifo #(parameter BITNUMBER = 8,
-			parameter LENGTH = 8)(
+module fifo #(parameter BITNUMBER = 6,
+			parameter LENGTH = 4*1)(
   input [BITNUMBER-1:0] Fifo_Data_in,
   input clk,
   input reset,
@@ -12,20 +12,22 @@ module fifo #(parameter BITNUMBER = 8,
   output reg [BITNUMBER-1:0] Fifo_Data_out,
   output reg Fifo_rd_error,
   output reg Fifo_wr_error,
-  output reg Fifo_error,
+  output  Fifo_error,
   output reg almost_full, 
-  output reg almost_empty
+  output reg almost_empty, 
+  output reg valid_read
   );
 
-reg to_empty, q_wt, q_rd, valid_read, v1;
-reg [(LENGTH/2)-2:0] rd_ptr, wr_ptr,  q_w, q_r;
-reg [(LENGTH/2)-1:0] elementos, contador;
+reg to_empty, q_wt, q_rd, v1;
+reg [((LENGTH/6)+(1)):0] rd_ptr, wr_ptr,  q_w, q_r; // Formula magica que deja un indice que se redondea a 1 (1.67) cuando LENGTH = 4 y a 3 (3.67) cuando LENGTH = 16.
+reg [(LENGTH/4)+1:0] elementos, contador;
 wire [BITNUMBER-1:0] q1;
 reg [BITNUMBER-1:0] q0;
 
 always @(posedge clk) begin
     if (reset) begin
-        {wr_ptr, rd_ptr, Fifo_rd_error, Fifo_wr_error, Fifo_error, Fifo_full, Fifo_Data_out, almost_empty, almost_full, valid_read, elementos} <= 0;
+        {wr_ptr, rd_ptr, Fifo_rd_error, Fifo_wr_error, /*Fifo_error,*/ Fifo_full, /*Fifo_Data_out,*/ almost_empty, almost_full, valid_read, elementos} <= 0;
+        Fifo_Data_out <= 0;
         Fifo_empty <= 1;
         contador <= 0;
         almost_empty <= 0;
@@ -71,7 +73,7 @@ always @(posedge clk) begin
         else begin
             Fifo_rd_error <= 0; // si comento esto la señal se mantiene hasta el proximo read sin error
         end 
-        if (contador == 8)
+        if (contador == LENGTH)
             Fifo_full <= 1;
         else 
             Fifo_full <= 0;
@@ -79,7 +81,7 @@ always @(posedge clk) begin
             Fifo_empty <= 1;
         else
             Fifo_empty <= 0;
-        if (contador == 7)
+        if (contador == LENGTH -1)
             almost_full <= 1;
         else 
             almost_full <= 0;
@@ -87,11 +89,11 @@ always @(posedge clk) begin
             almost_empty <= 1;
         else
             almost_empty <= 0;
-        Fifo_error <= Fifo_rd_error | Fifo_wr_error; 
+        //Fifo_error <= Fifo_rd_error | Fifo_wr_error; 
     end
 end
-
-memoria memoria(.data_in	(q0),
+assign Fifo_error = Fifo_rd_error | Fifo_wr_error; 
+memoria #(.BITNUMBER(BITNUMBER), .LENGTH(LENGTH)) memoria (.data_in	(q0),
 		.data_out	(q1),
 		.ptr_write	(wr_ptr),
 		.ptr_read	(rd_ptr),

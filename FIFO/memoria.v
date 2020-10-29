@@ -1,8 +1,8 @@
-module memoria #(parameter BITNUMBER = 8,
-			parameter LENGTH = 8)
+module memoria #(parameter BITNUMBER = 6,
+			parameter LENGTH = 4*4)
 (input [BITNUMBER-1:0] data_in,
-	input [(LENGTH/2)-2:0] ptr_write,
-	input [(LENGTH/2)-2:0] ptr_read,
+	input [((LENGTH/6)+(1)):0] ptr_write,
+	input [((LENGTH/6)+(1)):0] ptr_read,
 	input reset, 
 	input clk, 
 	input read,
