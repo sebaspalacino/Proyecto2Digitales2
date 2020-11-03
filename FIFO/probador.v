@@ -1,6 +1,7 @@
 module probador #(parameter BITNUMBER = 8,
 		parameter LENGTH = 8)
 (input [BITNUMBER-1:0] Fifo_Data_out,
+	input pause,
 	output reg reset,
 	output reg clk,
 	output reg Fifo_wr,
@@ -19,38 +20,84 @@ initial begin
 	@(posedge clk);
 
 	Fifo_Data_in <= 'hA;
-	Fifo_wr <= 1;
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 
-	@(posedge clk);	
+	@(posedge clk);
+		if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;	
 	Fifo_Data_in <= 'hB;
 	@(posedge clk);
+		if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 'hC;
 	@(posedge clk);
+		if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 'hD;
 
 	@(posedge clk);
+		if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 'hE;
 	Fifo_rd <= 1; // leer un dato
 	@(posedge clk);
+		if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 'hF;
 	Fifo_rd <= 0;
 
 	@(posedge clk);
+		if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 1;
 	@(posedge clk);
+		if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 'hAA;
-	Fifo_wr <= 0;
 	@(posedge clk);
 	Fifo_Data_in <= 'hBB;
 	Fifo_rd <= 1;
+		if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	@(posedge clk);
+		if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 'hCC;
 	@(posedge clk); // leer dos datos
 	Fifo_Data_in <= 2;
-	Fifo_wr <= 1;
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	@(posedge clk);
+		if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 3;
 	@(posedge clk);
+	
 	Fifo_Data_in <= 4;
 	@(posedge clk)
 	Fifo_Data_in <= 'hF;
@@ -66,28 +113,66 @@ initial begin
 	@(posedge clk)
 	@(posedge clk) // Lo lleno
 	Fifo_Data_in <= 1;
-	Fifo_wr <= 1;
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_rd <= 0;
 	@(posedge clk)
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 2;
 	@(posedge clk)
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 3;
 	@(posedge clk)
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 4;
 	@(posedge clk)
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 5;
 	@(posedge clk)
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 6;
 	@(posedge clk)
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 7;
 	@(posedge clk)
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_Data_in <= 8;
 	//Fifo_rd <= 1;
 	@(posedge clk)
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	Fifo_rd <= 0;
 	Fifo_Data_in <= 9;
 	@(posedge clk)
-	Fifo_wr <= 0;
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0;
 	@(posedge clk)
 	@(posedge clk)
 	@(posedge clk)
@@ -107,7 +192,10 @@ initial begin
 	Fifo_rd <=0;
 	@(posedge clk)
 	@(posedge clk)
-	Fifo_wr <= 1; 
+	if(!pause)
+		Fifo_wr <= 1;
+	else 
+		Fifo_wr <= 0; 
 	Fifo_Data_in <= 'hF;
 	Fifo_rd <= 1;
 	@(posedge clk)

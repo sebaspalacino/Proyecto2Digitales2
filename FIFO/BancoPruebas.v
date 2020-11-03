@@ -11,6 +11,7 @@ parameter LENGTH =4*1;
 
 //Wires
 wire clk, reset, Fifo_rd, Fifo_wr, Fifo_rd_error, Fifo_wr_error, Fifo_error, Fifo_error_est, almost_empty, almost_full, Fifo_full_est, Fifo_empty_est, valid_read, valid_read_est;
+wire pause, pause_est;
 wire [BITNUMBER-1:0] Fifo_Data_in;
 wire [BITNUMBER-1:0] Fifo_Data_out, Fifo_Data_out_est;
 wire [2:0] rd_ptr,rd_ptr_est;
@@ -25,6 +26,8 @@ fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))fifo_(/*AUTOINST*/
 						      .Fifo_error	(Fifo_error),
 						      .almost_full	(almost_full),
 						      .almost_empty	(almost_empty),
+						      .can_pop		(can_pop),
+						      .pause		(pause),
 						      .valid_read	(valid_read),
 						      // Inputs
 						      .Fifo_Data_in	(Fifo_Data_in[BITNUMBER-1:0]),
@@ -43,6 +46,8 @@ fifo_est fifo_est(/*AUTOINST*/
 		  .Fifo_wr_error_est	(Fifo_wr_error_est),
 		  .almost_empty_est	(almost_empty_est),
 		  .almost_full_est	(almost_full_est),
+		  .can_pop		(can_pop),
+		  .pause		(pause),
 		  .valid_read_est	(valid_read_est),
 		  // Inputs
 		  .Fifo_Data_in		(Fifo_Data_in[5:0]),
@@ -59,6 +64,7 @@ probador #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))probador_(/*AUTOINST*/
 							      .Fifo_rd		(Fifo_rd),
 							      .Fifo_Data_in	(Fifo_Data_in[BITNUMBER-1:0]),
 							      // Inputs
-							      .Fifo_Data_out	(Fifo_Data_out[BITNUMBER-1:0]));
+							      .Fifo_Data_out	(Fifo_Data_out[BITNUMBER-1:0]),
+							      .pause		(pause));
 
 endmodule

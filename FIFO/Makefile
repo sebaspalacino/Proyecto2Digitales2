@@ -20,6 +20,7 @@ YOSYS1:
 	yosys -s fifo_synth.tcl
 	sed -i 's/fifo/fifo_est/g' $(TEMP01)
 	sed -i 's/memoria/memoria_est/g' $(TEMP01)
+	sed -i 's/flow_control/flow_control_est/g' $(TEMP01)
 	sed -i 's/Fifo_Data_out/Fifo_Data_out_est/g' $(TEMP01)
 	sed -i 's/Fifo_full/Fifo_full_est/g' $(TEMP01)
 	sed -i 's/Fifo_empty/Fifo_empty_est/g' $(TEMP01)

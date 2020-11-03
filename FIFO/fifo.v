@@ -1,5 +1,5 @@
 `include "memoria.v"
-
+`include "flow_control.v"
 module fifo #(parameter BITNUMBER = 6,
 			parameter LENGTH = 4*1)(
   input [BITNUMBER-1:0] Fifo_Data_in,
@@ -14,7 +14,9 @@ module fifo #(parameter BITNUMBER = 6,
   output reg Fifo_wr_error,
   output  Fifo_error,
   output reg almost_full, 
-  output reg almost_empty, 
+  output reg almost_empty,
+  output wire can_pop,
+  output wire pause, 
   output reg valid_read
   );
 
@@ -60,11 +62,11 @@ always @(posedge clk) begin
          Fifo_wr_error <= 0;
          q0 <= q0;
         end
-        if(Fifo_rd && !Fifo_empty) begin
+        if(Fifo_rd && !Fifo_empty) begin // pop
             rd_ptr <= rd_ptr + 1;
             contador = contador -1;
             Fifo_rd_error <= 0; 
-            Fifo_Data_out <= q1;
+            //Fifo_Data_out <= q1;
             v1 <= 1;
             end
         else v1 <= 0;
@@ -101,5 +103,15 @@ memoria #(.BITNUMBER(BITNUMBER), .LENGTH(LENGTH)) memoria (.data_in	(q0),
 		.reset		(reset),
 		.read		(q_rd),
 		.write		(q_wt));
-
+flow_control #(.BITNUMBER(BITNUMBER), .LENGTH(LENGTH)) flow_c_ (
+        .clk            (clk),
+        .reset          (reset),
+        .Fifo_rd        (Fifo_rd),
+        .Fifo_wr        (Fifo_wr),
+        .almost_full    (almost_full), 
+        .almost_empty   (almost_empty),
+        .Fifo_full      (Fifo_full),
+        .Fifo_empty     (Fifo_empty),
+        .can_pop        (can_pop),
+        .pause          (pause));
 endmodule
