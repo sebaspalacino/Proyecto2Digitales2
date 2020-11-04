@@ -1,5 +1,5 @@
 $date
-	Tue Nov  3 09:31:18 2020
+	Tue Nov  3 22:46:04 2020
 $end
 $version
 	Icarus Verilog
@@ -11,166 +11,842 @@ $scope module BUF $end
 $var wire 1 ! A $end
 $var wire 1 " Y $end
 $upscope $end
-$scope module DFF $end
-$var wire 1 # C $end
-$var wire 1 $ D $end
-$var reg 1 % Q $end
+$scope module BancoPruebas $end
+$var wire 1 # umbralVC $end
+$var wire 1 $ umbralMF $end
+$var wire 1 % umbralD $end
+$var wire 4 & state_estr [3:0] $end
+$var wire 4 ' state [3:0] $end
+$var wire 1 ( reset $end
+$var wire 4 ) next_state_estr [3:0] $end
+$var wire 4 * next_state [3:0] $end
+$var wire 1 + init_out_estr $end
+$var wire 1 , init_out $end
+$var wire 1 - idle_out_estr $end
+$var wire 1 . idle_out $end
+$var wire 1 / error_out_estr $end
+$var wire 1 0 error_out $end
+$var wire 1 1 clk $end
+$var wire 1 2 active_out_estr $end
+$var wire 1 3 active_out $end
+$var wire 1 4 FifoWrite $end
+$var wire 1 5 FifoRead $end
+$var wire 1 6 FifoFull $end
+$var wire 1 7 FifoEmpty $end
+$scope module maquina $end
+$var wire 1 # umbralVC $end
+$var wire 1 $ umbralMF $end
+$var wire 1 % umbralD $end
+$var wire 1 ( reset $end
+$var wire 1 1 clk $end
+$var wire 1 4 FifoWrite $end
+$var wire 1 5 FifoRead $end
+$var wire 1 6 FifoFull $end
+$var wire 1 7 FifoEmpty $end
+$var reg 1 3 active_out $end
+$var reg 1 0 error_out $end
+$var reg 1 . idle_out $end
+$var reg 1 , init_out $end
+$var reg 4 8 next_state [3:0] $end
+$var reg 4 9 state [3:0] $end
 $upscope $end
-$scope module DFFSR $end
-$var wire 1 & C $end
-$var wire 1 ' D $end
-$var wire 1 ( R $end
-$var wire 1 ) S $end
-$var reg 1 * Q $end
+$scope module maquina_synth $end
+$var wire 1 # umbralVC $end
+$var wire 1 $ umbralMF $end
+$var wire 1 % umbralD $end
+$var wire 4 : state_estr [3:0] $end
+$var wire 1 ( reset $end
+$var wire 4 ; next_state_estr [3:0] $end
+$var wire 1 + init_out $end
+$var wire 1 - idle_out $end
+$var wire 1 / error_out $end
+$var wire 1 1 clk $end
+$var wire 1 2 active_out $end
+$var wire 1 < _42_ $end
+$var wire 1 = _41_ $end
+$var wire 1 > _40_ $end
+$var wire 1 ? _39_ $end
+$var wire 1 @ _38_ $end
+$var wire 1 A _37_ $end
+$var wire 1 B _36_ $end
+$var wire 1 C _35_ $end
+$var wire 1 D _34_ $end
+$var wire 1 E _33_ $end
+$var wire 1 F _32_ $end
+$var wire 1 G _31_ $end
+$var wire 1 H _30_ $end
+$var wire 1 I _29_ $end
+$var wire 1 J _28_ $end
+$var wire 1 K _27_ $end
+$var wire 1 L _26_ $end
+$var wire 1 M _25_ $end
+$var wire 1 N _24_ $end
+$var wire 1 O _23_ $end
+$var wire 1 P _22_ $end
+$var wire 1 Q _21_ $end
+$var wire 1 R _20_ $end
+$var wire 1 S _19_ $end
+$var wire 1 T _18_ $end
+$var wire 1 U _17_ $end
+$var wire 1 V _16_ $end
+$var wire 1 W _15_ $end
+$var wire 1 X _14_ $end
+$var wire 1 Y _13_ $end
+$var wire 1 Z _12_ $end
+$var wire 1 [ _11_ $end
+$var wire 1 \ _10_ $end
+$var wire 1 ] _09_ $end
+$var wire 1 ^ _08_ $end
+$var wire 1 _ _07_ $end
+$var wire 1 ` _06_ $end
+$var wire 1 a _05_ $end
+$var wire 1 b _04_ $end
+$var wire 1 c _03_ $end
+$var wire 1 d _02_ $end
+$var wire 1 e _01_ $end
+$var wire 4 f _00_ [3:0] $end
+$var wire 1 4 FifoWrite $end
+$var wire 1 5 FifoRead $end
+$var wire 1 6 FifoFull $end
+$var wire 1 7 FifoEmpty $end
+$scope module _43_ $end
+$var wire 1 g A $end
+$var wire 1 e Y $end
 $upscope $end
-$scope module NAND $end
-$var wire 1 + A $end
-$var wire 1 , B $end
-$var wire 1 - Y $end
+$scope module _44_ $end
+$var wire 1 d Y $end
+$var wire 1 7 A $end
 $upscope $end
-$scope module NOR $end
-$var wire 1 . A $end
-$var wire 1 / B $end
-$var wire 1 0 Y $end
+$scope module _45_ $end
+$var wire 1 c Y $end
+$var wire 1 6 A $end
 $upscope $end
-$scope module NOT $end
-$var wire 1 1 A $end
+$scope module _46_ $end
+$var wire 1 b Y $end
+$var wire 1 ( A $end
+$upscope $end
+$scope module _47_ $end
+$var wire 1 h A $end
+$var wire 1 e B $end
+$var wire 1 a Y $end
+$upscope $end
+$scope module _48_ $end
+$var wire 1 i A $end
+$var wire 1 j B $end
+$var wire 1 ` Y $end
+$upscope $end
+$scope module _49_ $end
+$var wire 1 ` A $end
+$var wire 1 _ Y $end
+$upscope $end
+$scope module _50_ $end
+$var wire 1 a A $end
+$var wire 1 _ B $end
+$var wire 1 ^ Y $end
+$upscope $end
+$scope module _51_ $end
+$var wire 1 ] Y $end
+$var wire 1 4 B $end
+$var wire 1 5 A $end
+$upscope $end
+$scope module _52_ $end
+$var wire 1 ^ B $end
+$var wire 1 \ Y $end
+$var wire 1 6 A $end
+$upscope $end
+$scope module _53_ $end
+$var wire 1 ] A $end
+$var wire 1 \ B $end
+$var wire 1 / Y $end
+$upscope $end
+$scope module _54_ $end
+$var wire 1 k A $end
+$var wire 1 l B $end
+$var wire 1 [ Y $end
+$upscope $end
+$scope module _55_ $end
+$var wire 1 [ A $end
+$var wire 1 Z Y $end
+$upscope $end
+$scope module _56_ $end
+$var wire 1 m A $end
+$var wire 1 [ B $end
+$var wire 1 Y Y $end
+$upscope $end
+$scope module _57_ $end
+$var wire 1 e A $end
+$var wire 1 Y B $end
+$var wire 1 X Y $end
+$upscope $end
+$scope module _58_ $end
+$var wire 1 W Y $end
+$var wire 1 6 B $end
+$var wire 1 7 A $end
+$upscope $end
+$scope module _59_ $end
+$var wire 1 W A $end
+$var wire 1 V Y $end
+$upscope $end
+$scope module _60_ $end
+$var wire 1 X A $end
+$var wire 1 W B $end
+$var wire 1 U Y $end
+$upscope $end
+$scope module _61_ $end
+$var wire 1 U A $end
 $var wire 1 2 Y $end
 $upscope $end
-$scope module maquina $end
-$var wire 1 3 FifoEmpty $end
-$var wire 1 4 FifoFull $end
-$var wire 1 5 FifoRead $end
-$var wire 1 6 FifoWrite $end
-$var wire 1 7 clk $end
-$var wire 1 8 reset $end
-$var wire 1 9 umbralD $end
-$var wire 1 : umbralMF $end
-$var wire 1 ; umbralVC $end
-$var reg 1 < active_out $end
-$var reg 1 = error_out $end
-$var reg 1 > idle_out $end
-$var reg 1 ? init_out $end
-$var reg 4 @ next_state [3:0] $end
-$var reg 4 A state [3:0] $end
+$scope module _62_ $end
+$var wire 1 n A $end
+$var wire 1 Y B $end
+$var wire 1 T Y $end
+$upscope $end
+$scope module _63_ $end
+$var wire 1 T B $end
+$var wire 1 S Y $end
+$var wire 1 7 A $end
+$upscope $end
+$scope module _64_ $end
+$var wire 1 S B $end
+$var wire 1 - Y $end
+$var wire 1 6 A $end
+$upscope $end
+$scope module _65_ $end
+$var wire 1 R Y $end
+$var wire 1 # B $end
+$var wire 1 $ A $end
+$upscope $end
+$scope module _66_ $end
+$var wire 1 R A $end
+$var wire 1 Q Y $end
+$upscope $end
+$scope module _67_ $end
+$var wire 1 Q B $end
+$var wire 1 P Y $end
+$var wire 1 % A $end
+$upscope $end
+$scope module _68_ $end
+$var wire 1 o A $end
+$var wire 1 e B $end
+$var wire 1 O Y $end
+$upscope $end
+$scope module _69_ $end
+$var wire 1 [ A $end
+$var wire 1 O B $end
+$var wire 1 N Y $end
+$upscope $end
+$scope module _70_ $end
+$var wire 1 P A $end
+$var wire 1 N B $end
+$var wire 1 + Y $end
+$upscope $end
+$scope module _71_ $end
+$var wire 1 M Y $end
+$var wire 1 6 B $end
+$var wire 1 7 A $end
+$upscope $end
+$scope module _72_ $end
+$var wire 1 M A $end
+$var wire 1 L Y $end
+$upscope $end
+$scope module _73_ $end
+$var wire 1 e A $end
+$var wire 1 V B $end
+$var wire 1 K Y $end
+$upscope $end
+$scope module _74_ $end
+$var wire 1 M A $end
+$var wire 1 K B $end
+$var wire 1 J Y $end
+$upscope $end
+$scope module _75_ $end
+$var wire 1 p A $end
+$var wire 1 J B $end
+$var wire 1 I Y $end
+$upscope $end
+$scope module _76_ $end
+$var wire 1 Z A $end
+$var wire 1 O B $end
+$var wire 1 H Y $end
+$upscope $end
+$scope module _77_ $end
+$var wire 1 I A $end
+$var wire 1 H B $end
+$var wire 1 G Y $end
+$upscope $end
+$scope module _78_ $end
+$var wire 1 G A $end
+$var wire 1 q Y $end
+$upscope $end
+$scope module _79_ $end
+$var wire 1 b A $end
+$var wire 1 G B $end
+$var wire 1 r Y $end
+$upscope $end
+$scope module _80_ $end
+$var wire 1 s A $end
+$var wire 1 d B $end
+$var wire 1 F Y $end
+$upscope $end
+$scope module _81_ $end
+$var wire 1 F B $end
+$var wire 1 E Y $end
+$var wire 1 6 A $end
+$upscope $end
+$scope module _82_ $end
+$var wire 1 T A $end
+$var wire 1 E B $end
+$var wire 1 D Y $end
+$upscope $end
+$scope module _83_ $end
+$var wire 1 U A $end
+$var wire 1 D B $end
+$var wire 1 C Y $end
+$upscope $end
+$scope module _84_ $end
+$var wire 1 + A $end
+$var wire 1 C B $end
+$var wire 1 B Y $end
+$upscope $end
+$scope module _85_ $end
+$var wire 1 B A $end
+$var wire 1 t Y $end
+$upscope $end
+$scope module _86_ $end
+$var wire 1 b A $end
+$var wire 1 B B $end
+$var wire 1 u Y $end
+$upscope $end
+$scope module _87_ $end
+$var wire 1 v A $end
+$var wire 1 A Y $end
+$var wire 1 7 B $end
+$upscope $end
+$scope module _88_ $end
+$var wire 1 c A $end
+$var wire 1 A B $end
+$var wire 1 @ Y $end
+$upscope $end
+$scope module _89_ $end
+$var wire 1 T A $end
+$var wire 1 @ B $end
+$var wire 1 ? Y $end
+$upscope $end
+$scope module _90_ $end
+$var wire 1 X A $end
+$var wire 1 L B $end
+$var wire 1 > Y $end
+$upscope $end
+$scope module _91_ $end
+$var wire 1 ? A $end
+$var wire 1 > B $end
+$var wire 1 = Y $end
+$upscope $end
+$scope module _92_ $end
+$var wire 1 / A $end
+$var wire 1 = B $end
+$var wire 1 < Y $end
+$upscope $end
+$scope module _93_ $end
+$var wire 1 < A $end
+$var wire 1 w Y $end
+$upscope $end
+$scope module _94_ $end
+$var wire 1 b A $end
+$var wire 1 < B $end
+$var wire 1 x Y $end
+$upscope $end
+$scope module _95_ $end
+$var wire 1 y D $end
+$var wire 1 1 C $end
+$var reg 1 z Q $end
+$upscope $end
+$scope module _96_ $end
+$var wire 1 { D $end
+$var wire 1 1 C $end
+$var reg 1 | Q $end
+$upscope $end
+$scope module _97_ $end
+$var wire 1 } D $end
+$var wire 1 1 C $end
+$var reg 1 ~ Q $end
+$upscope $end
+$scope module _98_ $end
+$var wire 1 !" D $end
+$var wire 1 1 C $end
+$var reg 1 "" Q $end
+$upscope $end
 $upscope $end
 $scope module probador $end
-$var wire 1 B active_out $end
-$var wire 1 C active_out_estr $end
-$var wire 1 D error_out $end
-$var wire 1 E error_out_estr $end
-$var wire 1 F idle_out $end
-$var wire 1 G idle_out_estr $end
-$var wire 1 H init_out $end
-$var wire 1 I init_out_estr $end
-$var reg 1 J FifoEmpty $end
-$var reg 1 K FifoFull $end
-$var reg 1 L FifoRead $end
-$var reg 1 M FifoWrite $end
-$var reg 1 N clk $end
-$var reg 1 O reset $end
-$var reg 1 P umbralD $end
-$var reg 1 Q umbralMF $end
-$var reg 1 R umbralVC $end
+$var wire 1 3 active_out $end
+$var wire 1 2 active_out_estr $end
+$var wire 1 0 error_out $end
+$var wire 1 / error_out_estr $end
+$var wire 1 . idle_out $end
+$var wire 1 - idle_out_estr $end
+$var wire 1 , init_out $end
+$var wire 1 + init_out_estr $end
+$var reg 1 7 FifoEmpty $end
+$var reg 1 6 FifoFull $end
+$var reg 1 5 FifoRead $end
+$var reg 1 4 FifoWrite $end
+$var reg 1 1 clk $end
+$var reg 1 ( reset $end
+$var reg 1 % umbralD $end
+$var reg 1 $ umbralMF $end
+$var reg 1 # umbralVC $end
+$upscope $end
+$upscope $end
+$scope module DFFSR $end
+$var wire 1 #" C $end
+$var wire 1 $" D $end
+$var wire 1 %" R $end
+$var wire 1 &" S $end
+$var reg 1 '" Q $end
 $upscope $end
 $enddefinitions $end
 #0
 $dumpvars
-0R
+x'"
+z&"
+z%"
+z$"
+z#"
+x""
+0!"
+x~
+0}
+x|
+0{
+xz
+0y
+0x
+0w
+xv
+0u
+xt
+xs
+0r
+xq
+xp
+xo
+xn
+xm
+xl
+xk
+xj
+xi
+xh
+xg
+b0 f
+xe
+1d
+1c
+1b
+xa
+x`
+x_
+x^
+1]
+1\
+x[
+xZ
+xY
+xX
+1W
+0V
+xU
+xT
+1S
+1R
 0Q
-0P
-0O
-0N
-0M
+1P
+xO
+xN
+1M
 0L
-0K
+1K
 0J
-zI
-zH
-zG
-zF
-zE
-zD
-zC
-zB
-bx A
-bx @
-x?
-0>
+1I
+xH
+xG
+xF
+1E
+xD
+xC
+xB
+xA
+0@
+1?
+1>
 0=
-0<
-z;
-z:
-z9
-z8
-z7
-z6
-z5
-z4
-z3
-z2
-z1
-x0
-z/
-z.
-x-
-z,
-z+
-x*
-z)
-z(
-z'
-z&
-x%
-z$
-z#
+1<
+b0xx ;
+bx :
+bx 9
+b0 8
+07
+06
+05
+04
+03
+x2
+01
+00
+0/
+0.
+0-
+0,
+0+
+b0 *
+b0xx )
+0(
+bx '
+bx &
+0%
+0$
+0#
 z"
 z!
 $end
 #4
-1O
+0t
+1B
+b1 )
+b1 ;
+1q
+0C
+0G
+02
+1D
+1U
 1N
+1H
+0T
+0^
+0X
+0O
+0Z
+0_
+1y
+0{
+1F
+1Y
+1A
+1a
+1[
+1`
+1r
+b1 f
+0u
+1e
+b1 *
+b1 8
+0n
+0g
+0s
+0p
+0o
+0m
+0j
+0v
+0l
+0h
+0k
+0i
+0b
+b0 '
+b0 9
+0z
+0|
+0~
+b0 &
+b0 :
+0""
+1(
+11
 #8
-0N
+01
 #12
-1R
+1{
+1u
+0y
+1t
+b10 f
+0r
+0B
+b10 )
+b10 ;
+0q
+1G
+1+
+0N
+0H
+0P
+1O
 1Q
-1N
+0R
+0e
+1n
+1g
+b10 *
+b10 8
+1,
+1#
+1$
+b1 &
+b1 :
+1z
+b1 '
+b1 9
+11
 #16
-0N
+01
 #20
+1{
+1u
+1t
+0y
+0B
+b10 f
+0r
+1-
+1C
+0I
+b10 )
+b10 ;
+0q
+0+
+1G
+0S
+0D
 1J
 1N
-#24
-0N
-#28
-0J
-1N
-#32
-0N
-#36
-1N
-#40
-0N
-#44
-1K
-1J
-1N
-#48
-0N
-#52
-1M
-1L
-0J
-1N
-#56
-0N
-#60
-0M
-0L
+1H
+1T
 0K
-1N
+1_
+0O
+0Y
+0`
+1V
+1e
+0A
+0W
+0n
+0g
+1s
+1p
+1o
+1m
+1j
+0d
+1.
+0,
+b10 '
+b10 9
+0z
+b10 &
+b10 :
+1|
+17
+11
+#24
+01
+#28
+1y
+b11 f
+1r
+b11 )
+b11 ;
+1q
+0G
+1I
+0J
+1K
+0-
+0V
+0F
+1A
+1S
+1W
+1d
+b11 *
+b11 8
+0.
+07
+11
+#32
+01
+#36
+12
+0U
+1D
+1X
+0T
+0e
+13
+1n
+1g
+b11 '
+b11 9
+b11 &
+b11 :
+1z
+11
+#40
+01
+#44
+1}
+1x
+0y
+0{
+1w
+0r
+b100 f
+0u
+0<
+0q
+b100 )
+b100 ;
+0t
+1G
+1B
+1=
+0I
+0C
+0>
+02
+0E
+1J
+1U
+1@
+1L
+1V
+1F
+0A
+0M
+0W
+0c
+0d
+b100 *
+b100 8
+03
+16
+17
+11
+#48
+01
+#52
+1}
+1x
+1/
+1w
+0<
+0y
+0\
+b100 f
+0r
+0=
+b100 )
+b100 ;
+0q
+1^
+1G
+0H
+1>
+0a
+0X
+0K
+0_
+1Z
+1@
+1J
+0T
+1I
+0O
+1Y
+1`
+0[
+0L
+1e
+0]
+0A
+1M
+0n
+0g
+0s
+0p
+0o
+0m
+0j
+1v
+1l
+1h
+1d
+10
+b100 '
+b100 9
+0z
+0|
+b100 &
+b100 :
+1~
+14
+15
+07
+11
+#56
+01
+#60
+0}
+b0 f
+0x
+0J
+b0 )
+b0 ;
+0w
+1<
+1K
+0/
+0V
+0@
+1]
+1E
+1W
+1\
+1c
+b0 *
+b0 8
+00
+04
+05
+06
+11
 #64
-0N
+01
 #68
-1N
+1y
+b1 f
+1r
+b1 )
+b1 ;
+1q
+0G
+1H
+0^
+0Z
+1A
+1[
+1a
+b1 *
+b1 8
+0v
+0l
+0h
+b0 '
+b0 9
+b0 &
+b0 :
+0~
+11

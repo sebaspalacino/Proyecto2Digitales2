@@ -10,9 +10,9 @@ module maquina(input clk,
 		output reg init_out,
 		output reg idle_out,
 		output reg active_out,
-		output reg error_out);
-
-reg [3:0] state, next_state;
+		output reg error_out,
+		output reg [3:0] state, 
+		output reg [3:0]next_state);
 
 parameter RESET=0;
 parameter INIT =1;
@@ -23,7 +23,7 @@ parameter ERROR=4;
  always @ (posedge clk) begin
         if(~reset) begin
             state <= RESET; 
-            error_out <=0;
+          //  error_out <=0;
         end
         else begin
             state <= next_state;
@@ -36,7 +36,7 @@ always @(*) begin
 	active_out=0;
 	error_out=0;
 	next_state=state;
-	
+	init_out = 0;
 	case(state)
 		RESET: begin
 		//For RESET state
@@ -90,16 +90,22 @@ always @(*) begin
 		
 		ERROR: begin
 		//For ERROR state
-			if(FifoRead==1 && FifoFull==1)begin
+			if((FifoRead==1 && FifoFull==1) || (FifoFull==1 && FifoWrite==1 && FifoRead==0))begin
 				error_out=1;
 				next_state=ERROR;
-			end else if (FifoFull==1 && FifoWrite==1 && FifoRead==0) begin
-				error_out=1;
-				next_state=ERROR;
+			//end else if (FifoFull==1 && FifoWrite==1 && FifoRead==0) begin
+			//	error_out=1;
+			//	next_state=ERROR;
 			end else begin
 				error_out=0;
 				next_state=RESET;
 			end		
+		end
+		default: begin
+			next_state= RESET;
+			idle_out=0;
+			active_out=0;
+			error_out=0;
 		end
 	endcase	
 end

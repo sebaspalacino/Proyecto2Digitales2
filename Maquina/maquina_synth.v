@@ -2,9 +2,9 @@
 
 (* top =  1  *)
 (* src = "maquina.v:1" *)
-module maquina_synth(clk, reset, umbralMF, umbralVC, umbralD, FifoFull, FifoEmpty, FifoWrite, FifoRead, init_out, idle_out, active_out, error_out);
-  (* src = "maquina.v:34" *)
-  wire _00_;
+module maquina_synth(clk, reset, umbralMF, umbralVC, umbralD, FifoFull, FifoEmpty, FifoWrite, FifoRead, init_out, idle_out, active_out, error_out, state_estr, next_state_estr);
+  (* src = "maquina.v:23" *)
+  wire [3:0] _00_;
   wire _01_;
   wire _02_;
   wire _03_;
@@ -44,6 +44,9 @@ module maquina_synth(clk, reset, umbralMF, umbralVC, umbralD, FifoFull, FifoEmpt
   wire _37_;
   wire _38_;
   wire _39_;
+  wire _40_;
+  wire _41_;
+  wire _42_;
   (* src = "maquina.v:7" *)
   input FifoEmpty;
   (* src = "maquina.v:6" *)
@@ -62,245 +65,289 @@ module maquina_synth(clk, reset, umbralMF, umbralVC, umbralD, FifoFull, FifoEmpt
   output idle_out;
   (* src = "maquina.v:10" *)
   output init_out;
+  (* src = "maquina.v:15" *)
+  output [3:0] next_state_estr;
   (* src = "maquina.v:2" *)
   input reset;
-  (* onehot = 32'd1 *)
-  wire [4:0] state;
+  (* src = "maquina.v:14" *)
+  output [3:0] state_estr;
   (* src = "maquina.v:5" *)
   input umbralD;
   (* src = "maquina.v:3" *)
   input umbralMF;
   (* src = "maquina.v:4" *)
   input umbralVC;
-  NOT _40_ (
-    .A(umbralD),
-    .Y(_06_)
-  );
-  NOT _41_ (
-    .A(FifoFull),
-    .Y(_07_)
-  );
-  NOT _42_ (
-    .A(reset),
-    .Y(_08_)
-  );
   NOT _43_ (
-    .A(state[3]),
-    .Y(_09_)
+    .A(state_estr[0]),
+    .Y(_01_)
   );
-  NOR _44_ (
-    .A(FifoRead),
-    .B(FifoWrite),
-    .Y(_10_)
+  NOT _44_ (
+    .A(FifoEmpty),
+    .Y(_02_)
   );
   NOT _45_ (
-    .A(_10_),
-    .Y(_11_)
+    .A(FifoFull),
+    .Y(_03_)
   );
-  NOR _46_ (
-    .A(_07_),
-    .B(_10_),
-    .Y(_12_)
+  NOT _46_ (
+    .A(reset),
+    .Y(_04_)
   );
   NAND _47_ (
+    .A(state_estr[2]),
+    .B(_01_),
+    .Y(_05_)
+  );
+  NOR _48_ (
+    .A(state_estr[3]),
+    .B(state_estr[1]),
+    .Y(_06_)
+  );
+  NOT _49_ (
+    .A(_06_),
+    .Y(_07_)
+  );
+  NOR _50_ (
+    .A(_05_),
+    .B(_07_),
+    .Y(_08_)
+  );
+  NOR _51_ (
+    .A(FifoRead),
+    .B(FifoWrite),
+    .Y(_09_)
+  );
+  NAND _52_ (
     .A(FifoFull),
+    .B(_08_),
+    .Y(_10_)
+  );
+  NOR _53_ (
+    .A(_09_),
+    .B(_10_),
+    .Y(error_out)
+  );
+  NOR _54_ (
+    .A(state_estr[3]),
+    .B(state_estr[2]),
+    .Y(_11_)
+  );
+  NOT _55_ (
+    .A(_11_),
+    .Y(_12_)
+  );
+  NAND _56_ (
+    .A(state_estr[1]),
     .B(_11_),
     .Y(_13_)
   );
-  NAND _48_ (
-    .A(state[1]),
+  NOR _57_ (
+    .A(_01_),
     .B(_13_),
     .Y(_14_)
   );
-  NOR _49_ (
-    .A(umbralMF),
-    .B(umbralVC),
-    .Y(_15_)
-  );
-  NAND _50_ (
-    .A(_06_),
-    .B(_15_),
-    .Y(_00_)
-  );
-  NOR _51_ (
-    .A(_09_),
-    .B(_00_),
-    .Y(_16_)
-  );
-  NOR _52_ (
-    .A(_08_),
-    .B(_16_),
-    .Y(_17_)
-  );
-  NAND _53_ (
-    .A(_14_),
-    .B(_17_),
-    .Y(_02_)
-  );
-  NAND _54_ (
+  NOR _58_ (
     .A(FifoEmpty),
     .B(FifoFull),
+    .Y(_15_)
+  );
+  NOT _59_ (
+    .A(_15_),
+    .Y(_16_)
+  );
+  NAND _60_ (
+    .A(_14_),
+    .B(_15_),
+    .Y(_17_)
+  );
+  NOT _61_ (
+    .A(_17_),
+    .Y(active_out)
+  );
+  NOR _62_ (
+    .A(state_estr[0]),
+    .B(_13_),
     .Y(_18_)
   );
-  NOT _55_ (
-    .A(_18_),
+  NAND _63_ (
+    .A(FifoEmpty),
+    .B(_18_),
     .Y(_19_)
   );
-  NOR _56_ (
-    .A(state[4]),
-    .B(state[2]),
+  NOR _64_ (
+    .A(FifoFull),
+    .B(_19_),
+    .Y(idle_out)
+  );
+  NOR _65_ (
+    .A(umbralMF),
+    .B(umbralVC),
     .Y(_20_)
   );
-  NOT _57_ (
+  NOT _66_ (
     .A(_20_),
     .Y(_21_)
   );
-  NOR _58_ (
-    .A(_08_),
-    .B(_20_),
+  NOR _67_ (
+    .A(umbralD),
+    .B(_21_),
     .Y(_22_)
   );
-  NAND _59_ (
-    .A(reset),
-    .B(_21_),
+  NOR _68_ (
+    .A(state_estr[1]),
+    .B(_01_),
     .Y(_23_)
   );
-  NAND _60_ (
-    .A(_19_),
-    .B(_22_),
+  NAND _69_ (
+    .A(_11_),
+    .B(_23_),
     .Y(_24_)
   );
-  NAND _61_ (
-    .A(reset),
-    .B(state[1]),
+  NOR _70_ (
+    .A(_22_),
+    .B(_24_),
+    .Y(init_out)
+  );
+  NAND _71_ (
+    .A(FifoEmpty),
+    .B(FifoFull),
     .Y(_25_)
   );
-  NOT _62_ (
+  NOT _72_ (
     .A(_25_),
     .Y(_26_)
   );
-  NAND _63_ (
-    .A(_12_),
-    .B(_26_),
+  NAND _73_ (
+    .A(_01_),
+    .B(_16_),
     .Y(_27_)
   );
-  NAND _64_ (
-    .A(_24_),
+  NAND _74_ (
+    .A(_25_),
     .B(_27_),
-    .Y(_03_)
-  );
-  NOR _65_ (
-    .A(FifoEmpty),
-    .B(FifoFull),
     .Y(_28_)
   );
-  NOT _66_ (
-    .A(_28_),
+  NAND _75_ (
+    .A(state_estr[1]),
+    .B(_28_),
     .Y(_29_)
   );
-  NAND _67_ (
-    .A(reset),
-    .B(_18_),
+  NOR _76_ (
+    .A(_12_),
+    .B(_23_),
     .Y(_30_)
   );
-  NOR _68_ (
-    .A(_28_),
+  NAND _77_ (
+    .A(_29_),
     .B(_30_),
     .Y(_31_)
   );
-  NAND _69_ (
-    .A(state[4]),
+  NOT _78_ (
+    .A(_31_),
+    .Y(next_state_estr[0])
+  );
+  NOR _79_ (
+    .A(_04_),
     .B(_31_),
+    .Y(_00_[0])
+  );
+  NAND _80_ (
+    .A(state_estr[1]),
+    .B(_02_),
     .Y(_32_)
   );
-  NAND _70_ (
-    .A(reset),
-    .B(state[0]),
+  NAND _81_ (
+    .A(FifoFull),
+    .B(_32_),
     .Y(_33_)
   );
-  NAND _71_ (
-    .A(_32_),
+  NAND _82_ (
+    .A(_18_),
     .B(_33_),
-    .Y(_05_)
-  );
-  NAND _72_ (
-    .A(state[2]),
-    .B(_31_),
     .Y(_34_)
   );
-  NAND _73_ (
-    .A(reset),
-    .B(state[3]),
+  NAND _83_ (
+    .A(_17_),
+    .B(_34_),
     .Y(_35_)
   );
-  NOT _74_ (
-    .A(_35_),
+  NOR _84_ (
+    .A(init_out),
+    .B(_35_),
     .Y(_36_)
   );
-  NAND _75_ (
-    .A(_00_),
+  NOT _85_ (
+    .A(_36_),
+    .Y(next_state_estr[1])
+  );
+  NOR _86_ (
+    .A(_04_),
     .B(_36_),
+    .Y(_00_[1])
+  );
+  NOR _87_ (
+    .A(state_estr[2]),
+    .B(FifoEmpty),
     .Y(_37_)
   );
-  NAND _76_ (
-    .A(_34_),
+  NOR _88_ (
+    .A(_03_),
     .B(_37_),
-    .Y(_04_)
-  );
-  NAND _77_ (
-    .A(state[4]),
-    .B(_28_),
     .Y(_38_)
   );
-  NOT _78_ (
-    .A(_38_),
-    .Y(active_out)
-  );
-  NAND _79_ (
-    .A(state[2]),
-    .B(FifoEmpty),
+  NAND _89_ (
+    .A(_18_),
+    .B(_38_),
     .Y(_39_)
   );
-  NOR _80_ (
-    .A(FifoFull),
-    .B(_39_),
-    .Y(idle_out)
+  NAND _90_ (
+    .A(_14_),
+    .B(_26_),
+    .Y(_40_)
   );
-  NOR _81_ (
-    .A(_23_),
-    .B(_29_),
-    .Y(_01_)
+  NAND _91_ (
+    .A(_39_),
+    .B(_40_),
+    .Y(_41_)
   );
-  DFF _82_ (
+  NOR _92_ (
+    .A(error_out),
+    .B(_41_),
+    .Y(_42_)
+  );
+  NOT _93_ (
+    .A(_42_),
+    .Y(next_state_estr[2])
+  );
+  NOR _94_ (
+    .A(_04_),
+    .B(_42_),
+    .Y(_00_[2])
+  );
+  (* src = "maquina.v:23" *)
+  DFF _95_ (
     .C(clk),
-    .D(_02_),
-    .Q(state[0])
+    .D(_00_[0]),
+    .Q(state_estr[0])
   );
-  DFF _83_ (
+  (* src = "maquina.v:23" *)
+  DFF _96_ (
     .C(clk),
-    .D(_03_),
-    .Q(state[1])
+    .D(_00_[1]),
+    .Q(state_estr[1])
   );
-  DFF _84_ (
+  (* src = "maquina.v:23" *)
+  DFF _97_ (
     .C(clk),
-    .D(_04_),
-    .Q(state[2])
+    .D(_00_[2]),
+    .Q(state_estr[2])
   );
-  DFF _85_ (
+  (* src = "maquina.v:23" *)
+  DFF _98_ (
     .C(clk),
-    .D(_05_),
-    .Q(state[3])
+    .D(1'h0),
+    .Q(state_estr[3])
   );
-  DFF _86_ (
-    .C(clk),
-    .D(_01_),
-    .Q(state[4])
-  );
-  (* src = "maquina.v:34" *)
-  \$_DLATCH_P_  _87_ (
-    .D(_00_),
-    .E(state[3]),
-    .Q(init_out)
-  );
-  assign error_out = 1'h0;
+  assign _00_[3] = 1'h0;
+  assign next_state_estr[3] = 1'h0;
 endmodule
