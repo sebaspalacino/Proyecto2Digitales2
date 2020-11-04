@@ -70,9 +70,9 @@ initial begin
 		Fifo_wr <= 1;
 	else 
 		Fifo_wr <= 0;
-	Fifo_Data_in <= 'hAA;
+	Fifo_Data_in <= 'b111111;
 	@(posedge clk);
-	Fifo_Data_in <= 'hBB;
+	Fifo_Data_in <= 'b100000;
 	Fifo_rd <= 1;
 		if(!pause)
 		Fifo_wr <= 1;
@@ -83,9 +83,9 @@ initial begin
 		Fifo_wr <= 1;
 	else 
 		Fifo_wr <= 0;
-	Fifo_Data_in <= 'hCC;
+	Fifo_Data_in <= 'b000111;
 	@(posedge clk); // leer dos datos
-	Fifo_Data_in <= 2;
+	Fifo_Data_in <= 'b000001;
 	if(!pause)
 		Fifo_wr <= 1;
 	else 
@@ -112,7 +112,7 @@ initial begin
 	@(posedge clk)
 	@(posedge clk)
 	@(posedge clk) // Lo lleno
-	Fifo_Data_in <= 1;
+	Fifo_Data_in <= 'b111111;;
 	if(!pause)
 		Fifo_wr <= 1;
 	else 
@@ -123,19 +123,19 @@ initial begin
 		Fifo_wr <= 1;
 	else 
 		Fifo_wr <= 0;
-	Fifo_Data_in <= 2;
+	Fifo_Data_in <= 'b000111;
 	@(posedge clk)
 	if(!pause)
 		Fifo_wr <= 1;
 	else 
 		Fifo_wr <= 0;
-	Fifo_Data_in <= 3;
+	Fifo_Data_in <= 'b100000;
 	@(posedge clk)
 	if(!pause)
 		Fifo_wr <= 1;
 	else 
 		Fifo_wr <= 0;
-	Fifo_Data_in <= 4;
+	Fifo_Data_in <= 'b000001;
 	@(posedge clk)
 	if(!pause)
 		Fifo_wr <= 1;

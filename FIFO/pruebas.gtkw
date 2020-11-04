@@ -1,22 +1,21 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Tue Nov  3 22:28:51 2020
+[*] Wed Nov  4 03:00:39 2020
 [*]
 [dumpfile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/FIFO/resultados.vcd"
-[dumpfile_mtime] "Tue Nov  3 22:09:29 2020"
-[dumpfile_size] 73281
+[dumpfile_mtime] "Wed Nov  4 02:57:34 2020"
+[dumpfile_size] 85009
 [savefile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/FIFO/pruebas.gtkw"
 [timestart] 0
 [size] 1920 1025
-[pos] -88 -363
-*-15.833427 240500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -1 -1
+*-15.759567 46500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] BancoPruebas.
-[treeopen] BancoPruebas.fifo_.
 [treeopen] BancoPruebas.fifo_est.
 [sst_width] 223
 [signals_width] 236
 [sst_expanded] 1
-[sst_vpaned_height] 288
+[sst_vpaned_height] 138
 @200
 -Entradas
 @28
@@ -29,8 +28,17 @@ BancoPruebas.Fifo_wr
 BancoPruebas.Fifo_rd
 @200
 -Modulo conductual
-@22
+@c00022
 BancoPruebas.Fifo_Data_out[5:0]
+@28
+(0)BancoPruebas.Fifo_Data_out[5:0]
+(1)BancoPruebas.Fifo_Data_out[5:0]
+(2)BancoPruebas.Fifo_Data_out[5:0]
+(3)BancoPruebas.Fifo_Data_out[5:0]
+(4)BancoPruebas.Fifo_Data_out[5:0]
+(5)BancoPruebas.Fifo_Data_out[5:0]
+@1401200
+-group_end
 @28
 BancoPruebas.valid_read
 BancoPruebas.Fifo_empty
@@ -53,7 +61,45 @@ BancoPruebas.fifo_est.almost_full_est
 BancoPruebas.fifo_est.Fifo_rd_error_est
 BancoPruebas.fifo_est.Fifo_wr_error_est
 BancoPruebas.fifo_est.Fifo_error_est
-BancoPruebas.fifo_.pause
+@200
+-Flow Control
+@28
 BancoPruebas.fifo_.can_pop
+BancoPruebas.fifo_.pause
+@200
+-Flow Control est
+@28
+BancoPruebas.fifo_est.can_pop
+BancoPruebas.fifo_est.pause
+@200
+-Demux validos vc_id
+@800029
+BancoPruebas.Fifo_Data_out[5:0]
+@1001201
+-group_end
+@28
+BancoPruebas.valid_read
+@22
+BancoPruebas.demux_to_VC0[5:0]
+@28
+BancoPruebas.Fifo_wr0_mux
+@22
+BancoPruebas.demux_to_VC1[5:0]
+@28
+BancoPruebas.Fifo_wr1_mux
+@200
+-Demux id est
+@22
+BancoPruebas.Fifo_Data_out_est[5:0]
+@28
+BancoPruebas.valid_read_est
+@22
+BancoPruebas.demux_to_VC0_est[5:0]
+@28
+BancoPruebas.Fifo_wr0_mux_est
+@22
+BancoPruebas.demux_to_VC1_est[5:0]
+@28
+BancoPruebas.Fifo_wr1_mux_est
 [pattern_trace] 1
 [pattern_trace] 0
