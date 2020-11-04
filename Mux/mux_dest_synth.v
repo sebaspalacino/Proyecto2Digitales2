@@ -3,11 +3,12 @@
 (* dynports =  1  *)
 (* top =  1  *)
 (* src = "mux_dest.v:1" *)
-module mux_dest_synth(clk, reset, data_in0, data_in1, valid_VC0, valid_VC1, valid_out_dest, data_out_dest);
-  (* src = "mux_dest.v:35" *)
+module mux_dest_synth(clk, reset, data_in0, data_in1, valid_VC0, valid_VC1, valid_out_dest0, valid_out_dest1, data_out_dest);
+  (* src = "mux_dest.v:40" *)
   wire [4:0] _00_;
-  (* src = "mux_dest.v:35" *)
+  (* src = "mux_dest.v:40" *)
   wire _01_;
+  (* src = "mux_dest.v:40" *)
   wire _02_;
   wire _03_;
   wire _04_;
@@ -29,18 +30,7 @@ module mux_dest_synth(clk, reset, data_in0, data_in1, valid_VC0, valid_VC1, vali
   wire _20_;
   wire _21_;
   wire _22_;
-  wire _23_;
-  wire _24_;
-  wire _25_;
-  wire _26_;
-  wire _27_;
-  wire _28_;
-  wire _29_;
-  wire _30_;
-  wire _31_;
-  wire _32_;
-  wire _33_;
-  (* src = "mux_dest.v:11" *)
+  (* src = "mux_dest.v:12" *)
   (* unused_bits = "0 1 2 3 4" *)
   wire [5:0] ValueHold_Out;
   (* src = "mux_dest.v:2" *)
@@ -49,8 +39,10 @@ module mux_dest_synth(clk, reset, data_in0, data_in1, valid_VC0, valid_VC1, vali
   input [4:0] data_in0;
   (* src = "mux_dest.v:5" *)
   input [4:0] data_in1;
-  (* src = "mux_dest.v:9" *)
+  (* src = "mux_dest.v:10" *)
   output [4:0] data_out_dest;
+  (* src = "mux_dest.v:13" *)
+  wire interValidValue0;
   (* src = "mux_dest.v:3" *)
   input reset;
   (* src = "mux_dest.v:6" *)
@@ -58,219 +50,182 @@ module mux_dest_synth(clk, reset, data_in0, data_in1, valid_VC0, valid_VC1, vali
   (* src = "mux_dest.v:7" *)
   input valid_VC1;
   (* src = "mux_dest.v:8" *)
-  output valid_out_dest;
-  NOT _34_ (
-    .A(reset),
-    .Y(_02_)
-  );
-  NOT _35_ (
-    .A(valid_VC1),
+  output valid_out_dest0;
+  (* src = "mux_dest.v:9" *)
+  output valid_out_dest1;
+  NOT _23_ (
+    .A(valid_VC0),
     .Y(_03_)
   );
-  NOT _36_ (
-    .A(valid_VC0),
+  NOT _24_ (
+    .A(reset),
     .Y(_04_)
   );
-  NOT _37_ (
-    .A(data_in1[0]),
+  NOT _25_ (
+    .A(valid_VC1),
     .Y(_05_)
   );
-  NOT _38_ (
-    .A(data_in1[1]),
+  NOR _26_ (
+    .A(_03_),
+    .B(_04_),
     .Y(_06_)
   );
-  NOT _39_ (
-    .A(data_in1[2]),
+  NAND _27_ (
+    .A(valid_VC0),
+    .B(reset),
     .Y(_07_)
   );
-  NOT _40_ (
-    .A(data_in1[3]),
+  NAND _28_ (
+    .A(data_in0[0]),
+    .B(_06_),
     .Y(_08_)
   );
-  NOT _41_ (
-    .A(data_in1[4]),
+  NAND _29_ (
+    .A(_03_),
+    .B(reset),
     .Y(_09_)
   );
-  NAND _42_ (
-    .A(valid_VC1),
-    .B(_04_),
+  NOR _30_ (
+    .A(_05_),
+    .B(_09_),
     .Y(_10_)
   );
-  NOR _43_ (
-    .A(_06_),
-    .B(_10_),
+  NOT _31_ (
+    .A(_10_),
     .Y(_11_)
   );
-  NAND _44_ (
-    .A(valid_VC0),
-    .B(data_in0[1]),
+  NAND _32_ (
+    .A(data_in1[0]),
+    .B(_10_),
     .Y(_12_)
   );
-  NOT _45_ (
-    .A(_12_),
+  NAND _33_ (
+    .A(_08_),
+    .B(_12_),
+    .Y(_00_[0])
+  );
+  NAND _34_ (
+    .A(data_in0[1]),
+    .B(_06_),
     .Y(_13_)
   );
-  NOR _46_ (
-    .A(_11_),
-    .B(_13_),
+  NAND _35_ (
+    .A(data_in1[1]),
+    .B(_10_),
     .Y(_14_)
   );
-  NOR _47_ (
-    .A(_02_),
+  NAND _36_ (
+    .A(_13_),
     .B(_14_),
     .Y(_00_[1])
   );
-  NOR _48_ (
-    .A(_07_),
-    .B(_10_),
+  NAND _37_ (
+    .A(data_in0[2]),
+    .B(_06_),
     .Y(_15_)
   );
-  NAND _49_ (
-    .A(valid_VC0),
-    .B(data_in0[2]),
+  NAND _38_ (
+    .A(data_in1[2]),
+    .B(_10_),
     .Y(_16_)
   );
-  NOT _50_ (
-    .A(_16_),
-    .Y(_17_)
-  );
-  NOR _51_ (
+  NAND _39_ (
     .A(_15_),
-    .B(_17_),
-    .Y(_18_)
-  );
-  NOR _52_ (
-    .A(_02_),
-    .B(_18_),
+    .B(_16_),
     .Y(_00_[2])
   );
-  NOR _53_ (
-    .A(_08_),
+  NAND _40_ (
+    .A(data_in0[3]),
+    .B(_06_),
+    .Y(_17_)
+  );
+  NAND _41_ (
+    .A(data_in1[3]),
     .B(_10_),
-    .Y(_19_)
+    .Y(_18_)
   );
-  NAND _54_ (
-    .A(valid_VC0),
-    .B(data_in0[3]),
-    .Y(_20_)
-  );
-  NOT _55_ (
-    .A(_20_),
-    .Y(_21_)
-  );
-  NOR _56_ (
-    .A(_19_),
-    .B(_21_),
-    .Y(_22_)
-  );
-  NOR _57_ (
-    .A(_02_),
-    .B(_22_),
+  NAND _42_ (
+    .A(_17_),
+    .B(_18_),
     .Y(_00_[3])
   );
-  NOR _58_ (
-    .A(_09_),
+  NAND _43_ (
+    .A(data_in0[4]),
+    .B(_06_),
+    .Y(_19_)
+  );
+  NAND _44_ (
+    .A(data_in1[4]),
     .B(_10_),
-    .Y(_23_)
+    .Y(_20_)
   );
-  NAND _59_ (
-    .A(valid_VC0),
-    .B(data_in0[4]),
-    .Y(_24_)
-  );
-  NOT _60_ (
-    .A(_24_),
-    .Y(_25_)
-  );
-  NOR _61_ (
-    .A(_23_),
-    .B(_25_),
-    .Y(_26_)
-  );
-  NOR _62_ (
-    .A(_02_),
-    .B(_26_),
+  NAND _45_ (
+    .A(_19_),
+    .B(_20_),
     .Y(_00_[4])
   );
-  NAND _63_ (
-    .A(_03_),
-    .B(_04_),
-    .Y(_27_)
+  NAND _46_ (
+    .A(_04_),
+    .B(valid_out_dest1),
+    .Y(_21_)
   );
-  NAND _64_ (
-    .A(reset),
-    .B(_27_),
-    .Y(_28_)
+  NAND _47_ (
+    .A(_11_),
+    .B(_21_),
+    .Y(_02_)
   );
-  NAND _65_ (
-    .A(_02_),
-    .B(valid_out_dest),
-    .Y(_29_)
+  NAND _48_ (
+    .A(_04_),
+    .B(valid_out_dest0),
+    .Y(_22_)
   );
-  NAND _66_ (
-    .A(_28_),
-    .B(_29_),
+  NAND _49_ (
+    .A(_07_),
+    .B(_22_),
     .Y(_01_)
   );
-  NOR _67_ (
-    .A(_05_),
-    .B(_10_),
-    .Y(_30_)
-  );
-  NAND _68_ (
-    .A(valid_VC0),
-    .B(data_in0[0]),
-    .Y(_31_)
-  );
-  NOT _69_ (
-    .A(_31_),
-    .Y(_32_)
-  );
-  NOR _70_ (
-    .A(_30_),
-    .B(_32_),
-    .Y(_33_)
-  );
-  NOR _71_ (
-    .A(_02_),
-    .B(_33_),
-    .Y(_00_[0])
-  );
-  (* src = "mux_dest.v:35" *)
-  DFF _72_ (
+  (* src = "mux_dest.v:40" *)
+  DFF _50_ (
     .C(clk),
     .D(_01_),
-    .Q(valid_out_dest)
+    .Q(valid_out_dest0)
   );
-  (* src = "mux_dest.v:35" *)
-  DFF _73_ (
+  (* src = "mux_dest.v:40" *)
+  DFF _51_ (
+    .C(clk),
+    .D(_02_),
+    .Q(valid_out_dest1)
+  );
+  (* src = "mux_dest.v:40" *)
+  DFF _52_ (
     .C(clk),
     .D(_00_[0]),
     .Q(data_out_dest[0])
   );
-  (* src = "mux_dest.v:35" *)
-  DFF _74_ (
+  (* src = "mux_dest.v:40" *)
+  DFF _53_ (
     .C(clk),
     .D(_00_[1]),
     .Q(data_out_dest[1])
   );
-  (* src = "mux_dest.v:35" *)
-  DFF _75_ (
+  (* src = "mux_dest.v:40" *)
+  DFF _54_ (
     .C(clk),
     .D(_00_[2]),
     .Q(data_out_dest[2])
   );
-  (* src = "mux_dest.v:35" *)
-  DFF _76_ (
+  (* src = "mux_dest.v:40" *)
+  DFF _55_ (
     .C(clk),
     .D(_00_[3]),
     .Q(data_out_dest[3])
   );
-  (* src = "mux_dest.v:35" *)
-  DFF _77_ (
+  (* src = "mux_dest.v:40" *)
+  DFF _56_ (
     .C(clk),
     .D(_00_[4]),
     .Q(data_out_dest[4])
   );
   assign ValueHold_Out[5] = 1'h0;
+  assign interValidValue0 = valid_VC0;
 endmodule

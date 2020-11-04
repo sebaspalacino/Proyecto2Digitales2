@@ -1,7 +1,7 @@
 `timescale 1ns / 100ps
 
 module probador#(parameter BITNUMBER=5)
-			(input valid_out_dest, valid_out_dest_estr,
+			(input valid_out_dest0, valid_out_dest1, valid_out_dest0_estr, valid_out_dest1_estr,
 			input [BITNUMBER-1:0] data_out_dest, data_out_dest_estr,
 			output reg [BITNUMBER-1:0] data_in0, data_in1,
 			output reg clk, reset, valid_VC0, valid_VC1);
