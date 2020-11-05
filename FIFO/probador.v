@@ -6,6 +6,7 @@ module probador #(parameter BITNUMBER = 8,
 	output reg clk,
 	output reg Fifo_wr,
 	output reg Fifo_rd,
+	output reg [2:0] Umbral,
 	output reg [BITNUMBER-1:0] Fifo_Data_in);
 
 initial begin
@@ -14,11 +15,12 @@ initial begin
 
 	reset <= 1;
 	{Fifo_wr, Fifo_rd, Fifo_Data_in} <=0;
+	Umbral <= 0;
 	@(posedge clk);
 	@(posedge clk);
 	reset <=0;
+	Umbral <= 1;
 	@(posedge clk);
-
 	Fifo_Data_in <= 'hA;
 	if(!pause)
 		Fifo_wr <= 1;

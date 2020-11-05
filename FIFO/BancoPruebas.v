@@ -17,7 +17,7 @@ wire pause, pause_est, Fifo_wr0_mux, Fifo_wr1_mux, Fifo_wr0_mux_est, Fifo_wr1_mu
 wire [BITNUMBER-1:0] Fifo_Data_in;
 wire [BITNUMBER-1:0] Fifo_Data_out, Fifo_Data_out_est;
 wire [BITNUMBER-1:0]demux_to_VC0, demux_to_VC1, demux_to_VC0_est, demux_to_VC1_est;
-wire [2:0] rd_ptr,rd_ptr_est;
+wire [2:0] rd_ptr,rd_ptr_est, Umbral;
 
 fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))fifo_(/*AUTOINST*/
 						      // Outputs
@@ -37,7 +37,8 @@ fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))fifo_(/*AUTOINST*/
 						      .clk		(clk),
 						      .reset		(reset),
 						      .Fifo_rd		(Fifo_rd),
-						      .Fifo_wr		(Fifo_wr));
+						      .Fifo_wr		(Fifo_wr),
+						      .Umbral		(Umbral[2:0]));
 
 fifo_est fifo_est(/*AUTOINST*/
 		  // Outputs
@@ -56,6 +57,7 @@ fifo_est fifo_est(/*AUTOINST*/
 		  .Fifo_Data_in		(Fifo_Data_in[5:0]),
 		  .Fifo_rd		(Fifo_rd),
 		  .Fifo_wr		(Fifo_wr),
+		  .Umbral		(Umbral[2:0]),
 		  .clk			(clk),
 		  .reset		(reset));
 demux_id demux_id_(
@@ -90,6 +92,7 @@ probador #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))probador_(/*AUTOINST*/
 							      .clk		(clk),
 							      .Fifo_wr		(Fifo_wr),
 							      .Fifo_rd		(Fifo_rd),
+							      .Umbral		(Umbral[2:0]),
 							      .Fifo_Data_in	(Fifo_Data_in[BITNUMBER-1:0]),
 							      // Inputs
 							      .Fifo_Data_out	(Fifo_Data_out[BITNUMBER-1:0]),
