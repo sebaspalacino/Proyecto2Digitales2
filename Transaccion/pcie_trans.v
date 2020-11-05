@@ -27,6 +27,7 @@ wire D1_full, D1_empty, D1_rd_error, D1_wr_error, D1_error, D1_almost_full, D1_a
 wire Mux_valid;
 wire pop_main, push_VC0, push_VC1, push_D0, push_D1, pop_VC0, pop_VC1, pop_D0, pop_D1;
 wire [BITNUMBER-1:0] Main_Fifo_Data_out, demux_to_VC0, demux_to_VC1, Mux_out, VC0_Data_out, VC1_Data_out, demux_to_D0, demux_to_D1;
+wire [4:0] Fifo_empties, Fifo_error;
 wire [LENGTH-1:0] Umbral_MF, Umbral_VC, Umbral_D;
 
 fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))Main_fifo_(
@@ -174,7 +175,21 @@ fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))D1_(
 assign pop_main = !(VC0_pause || VC1_pause) && !(Main_fifo_empty); 
 assign pop_VC0 = !(D0_pause || D1_pause) && !(VC0_empty); 
 assign pop_VC1 = !(D0_pause || D1_pause) && !(VC1_empty) && (VC0_empty); 
+
+// Para la maquina de estados
 assign Umbral_D = 1;
 assign Umbral_VC = 1;
 assign Umbral_MF = 1;
+
+assign Fifo_empties[0] = Main_fifo_empty;
+assign Fifo_empties[1] = VC0_empty;
+assign Fifo_empties[2] = VC1_empty;
+assign Fifo_empties[3] = D0_empty;
+assign Fifo_empties[4] = D1_empty;
+
+assign Fifo_error[0] = Main_fifo_error;
+assign Fifo_error[1] = VC0_error;
+assign Fifo_error[2] = VC1_error;
+assign Fifo_error[3] = D0_error;
+assign Fifo_error[4] = D1_error;
 endmodule
