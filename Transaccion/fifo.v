@@ -88,7 +88,7 @@ always @(posedge clk) begin
         else 
             almost_full <= 0;
         if (contador == 1)
-            almost_empty <= 1;
+            almost_empty <= 2;
         else
             almost_empty <= 0;
         //Fifo_error <= Fifo_rd_error | Fifo_wr_error; 

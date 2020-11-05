@@ -1,0 +1,25 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Thu Nov  5 02:33:52 2020
+[*]
+[dumpfile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/Com/resultados.vcd"
+[dumpfile_mtime] "Thu Nov  5 02:32:37 2020"
+[dumpfile_size] 615461
+[savefile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/Com/prueba.gtkw"
+[timestart] 35500
+[size] 1000 600
+[pos] -1 -1
+*-15.729939 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 223
+[signals_width] 174
+[sst_expanded] 1
+[sst_vpaned_height] 152
+@23
+BancoPruebas.data_in[5:0]
+@22
+BancoPruebas.data_out0[5:0]
+BancoPruebas.data_out0_est[5:0]
+BancoPruebas.data_out1[5:0]
+BancoPruebas.data_out1_est[5:0]
+[pattern_trace] 1
+[pattern_trace] 0
