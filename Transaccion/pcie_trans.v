@@ -171,9 +171,9 @@ fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))D1_(
 						      .Fifo_rd		    (pop_D1),/****/
 						      .Fifo_wr		    (push_D1));
 
-assign pop_main = !(VC0_pause || VC1_pause) && !(Main_fifo_empty); // talvez cambiar el !Main_fifo_empty por Main_can_pop
-assign pop_VC0 = !(D0_pause || D1_pause) && !(VC0_empty); // VC0_can_pop
-assign pop_VC1 = !(D0_pause || D1_pause) && !(VC1_empty); // VC1_can_pop
+assign pop_main = !(VC0_pause || VC1_pause) && !(Main_fifo_empty); 
+assign pop_VC0 = !(D0_pause || D1_pause) && !(VC0_empty); 
+assign pop_VC1 = !(D0_pause || D1_pause) && !(VC1_empty) && (VC0_empty); 
 assign Umbral_D = 1;
 assign Umbral_VC = 1;
 assign Umbral_MF = 1;

@@ -1,5 +1,5 @@
 module flow_control #(parameter BITNUMBER = 6,
-			parameter LENGTH = 4*1)(
+			parameter LENGTH = 4)(
   input clk,
   input reset,
   input Fifo_rd,
@@ -17,11 +17,11 @@ always @(*) begin
         {can_pop, pause} = 0;
     end
     else begin
-        if (almost_full || Fifo_full)
+        if (/*almost_full ||*/ Fifo_full)
             pause = 1;
         else
             pause = 0;
-        if (almost_empty || Fifo_empty)
+        if (/*almost_empty ||*/ Fifo_empty)
             can_pop = 0;
         else
             can_pop = 1;

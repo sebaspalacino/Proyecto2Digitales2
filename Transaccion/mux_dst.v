@@ -17,13 +17,10 @@ always @(*) begin
 		ValueHold_Out = data_in0;
 		interValidValue = valid_VC0;
 	end else begin
-	//If valid_VC0==0
 		if(valid_VC1) begin
-		//If valid_VC1 ==1
 			ValueHold_Out= data_in1;
 			interValidValue = valid_VC1;
 		end else begin
-		//If valid_VC1==0
 			ValueHold_Out = 0;
 			interValidValue = 0;	
 		end
@@ -37,7 +34,6 @@ always @(posedge clk)begin
 		data_out_dest <=0;
 		valid_out_dest <= 0;
 	end else begin
-	//If reset == 1
 		valid_out_dest <= interValidValue;
 		data_out_dest <= ValueHold_Out;
 	end
