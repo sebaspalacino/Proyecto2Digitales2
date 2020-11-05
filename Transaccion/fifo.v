@@ -7,6 +7,7 @@ module fifo #(parameter BITNUMBER = 6,
   input reset,
   input Fifo_rd,
   input Fifo_wr,
+  input [2:0]Umbral,
   output reg  Fifo_full,
   output reg Fifo_empty,
   output reg [BITNUMBER-1:0] Fifo_Data_out,
@@ -83,12 +84,12 @@ always @(posedge clk) begin
             Fifo_empty <= 1;
         else
             Fifo_empty <= 0;
-        if (contador == LENGTH -1)
+        if (contador == LENGTH - Umbral)
             almost_full <= 1;
         else 
             almost_full <= 0;
-        if (contador == 1)
-            almost_empty <= 2;
+        if (contador == Umbral)
+            almost_empty <= 1;
         else
             almost_empty <= 0;
         //Fifo_error <= Fifo_rd_error | Fifo_wr_error; 
