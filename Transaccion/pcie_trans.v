@@ -27,7 +27,7 @@ wire D1_full, D1_empty, D1_rd_error, D1_wr_error, D1_error, D1_almost_full, D1_a
 wire Mux_valid;
 wire pop_main, push_VC0, push_VC1, push_D0, push_D1, pop_VC0, pop_VC1, pop_D0, pop_D1;
 wire [BITNUMBER-1:0] Main_Fifo_Data_out, demux_to_VC0, demux_to_VC1, Mux_out, VC0_Data_out, VC1_Data_out, demux_to_D0, demux_to_D1;
-wire [2:0] Umbral_MF, Umbral_VC, Umbral_D;
+wire [LENGTH-1:0] Umbral_MF, Umbral_VC, Umbral_D;
 
 fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))Main_fifo_(
 						      // Outputs
@@ -45,7 +45,7 @@ fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))Main_fifo_(
 						      // Inputs
 						      .Fifo_Data_in	    (data_in[BITNUMBER-1:0]),
 						      .clk		        (clk),
-							  .Umbral			(Umbral_MF[2:0]),
+							  .Umbral			(Umbral_MF[LENGTH-1:0]),
 						      .reset		    (reset),
 						      .Fifo_rd		    (pop_main),/****/
 						      .Fifo_wr		    (push));
@@ -79,7 +79,7 @@ fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH*4))VC0_(
 						      // Inputs
 						      .Fifo_Data_in	    (demux_to_VC0[BITNUMBER-1:0]),
 						      .clk		        (clk),
-							  .Umbral			(Umbral_VC[2:0]),
+							  .Umbral			(Umbral_VC[LENGTH-1:0]),
 						      .reset		    (reset),
 						      .Fifo_rd		    (pop_VC0),/****/
 						      .Fifo_wr		    (push_VC0));
@@ -100,7 +100,7 @@ fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH*4))VC1_(
 						      // Inputs
 						      .Fifo_Data_in	    (demux_to_VC1[BITNUMBER-1:0]),
 						      .clk		        (clk),
-							  .Umbral			(Umbral_VC[2:0]),
+							  .Umbral			(Umbral_VC[LENGTH-1:0]),
 						      .reset		    (reset),
 						      .Fifo_rd		    (pop_VC1),/****/
 						      .Fifo_wr		    (push_VC1));
@@ -145,7 +145,7 @@ fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))D0_(
 						      // Inputs
 						      .Fifo_Data_in	    (demux_to_D0[BITNUMBER-1:0]),
 						      .clk		        (clk),
-							  .Umbral			(Umbral_D[2:0]),
+							  .Umbral			(Umbral_D[LENGTH-1:0]),
 						      .reset		    (reset),
 						      .Fifo_rd		    (pop_D0),/****/
 						      .Fifo_wr		    (push_D0));
@@ -166,7 +166,7 @@ fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))D1_(
 						      // Inputs
 						      .Fifo_Data_in	    (demux_to_D1[BITNUMBER-1:0]),
 						      .clk		        (clk),
-							  .Umbral			(Umbral_D[2:0]),
+							  .Umbral			(Umbral_D[LENGTH-1:0]),
 						      .reset		    (reset),
 						      .Fifo_rd		    (pop_D1),/****/
 						      .Fifo_wr		    (push_D1));
