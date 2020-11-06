@@ -1,16 +1,18 @@
-module maquina(input clk,
+module maquina#(parameter BITBUS = 1)
+		(input clk,
 		input reset,
-		input umbralMF,
-		input umbralVC,
-		input umbralD,
-		input FifoFull,
-		input FifoEmpty,
-		input FifoWrite,
-		input FifoRead,
+		input [BITBUS-1:0] umbralMF,
+		input [BITBUS-1:0] umbralVC,
+		input [BITBUS-1:0] umbralD,
+		input [4:0] Fifo_empties,
+		input [4:0] Fifo_errors,
 		output reg init_out,
 		output reg idle_out,
 		output reg active_out,
 		output reg error_out,
+		output reg [BITBUS-1:0] umbralMF_out,
+		output reg [BITBUS-1:0] umbralVC_out,
+		output reg [BITBUS-1:0] umbralD_out,
 		output reg [3:0] state, 
 		output reg [3:0]next_state);
 
@@ -37,6 +39,9 @@ always @(*) begin
 	error_out=0;
 	next_state=state;
 	init_out = 0;
+	umbralMF_out = 0;
+	umbralVC_out = 0;
+	umbralD_out = 0;
 	case(state)
 		RESET: begin
 		//For RESET state
@@ -45,57 +50,52 @@ always @(*) begin
 		
 		INIT: begin
 		//For INIT state
-			if(umbralMF==1 || umbralVC==1 || umbralD==1)begin
+			if(umbralMF || umbralVC || umbralD)begin
 			//Si hay algun umbral ON, init_out se enciende
 				init_out=1;
+				umbralMF_out = umbralMF;
+				umbralVC_out = umbralVC;
+				umbralD_out = umbralD;
 				next_state= IDLE;
 			end else begin
 			//Si ningun umbral esta on, se vuelve a RESET e init_out se queda apagado
 				init_out=0;
+				umbralMF_out = 0;
+				umbralVC_out = 0;
+				umbralD_out = 0;
 				next_state= RESET;
 			end
 		end
 		
 		IDLE: begin
 		//For IDLE state
-			if(FifoEmpty==1 && FifoFull==0)begin 
+			if(Fifo_empties == 5'b11111)begin 
 				idle_out=1;
 				next_state= IDLE;
-			end if (FifoEmpty==1 && FifoFull==1)begin
-				idle_out=0;
-				next_state= ERROR;
-			end if (FifoEmpty==0 && FifoFull==0) begin
-			//Si hay un FIFO no vacio entonces pasamos a ACTIVE, osea FifoEmpty==0
+			end else begin
 				idle_out=0;
 				next_state= ACTIVE;
-			
-			end
+			end 
 		end
 		
 		ACTIVE: begin
 		//For ACTIVE state
-			if(FifoEmpty==0 && FifoFull==0) begin //Si el fifo no esta ni lleno, ni vacio, osea que tiene informacion adentro que se puede transmitir
+			if(Fifo_errors == 00000) begin //Si el fifo no esta ni lleno, ni vacio, osea que tiene informacion adentro que se puede transmitir
 				active_out=1;
 				next_state=ACTIVE;
-			end else if(FifoEmpty==1 && FifoFull==1) begin
+			end else begin
 			//Este caso generaria un error puesto que el fifo no puede estar vacio y lleno al mismo tiempo
 				active_out=0;
 				next_state=ERROR; 	
-			end else begin
-				active_out=0;
-				next_state=INIT;
-			end
+			end 
 			
 		end
 		
 		ERROR: begin
 		//For ERROR state
-			if((FifoRead==1 && FifoFull==1) || (FifoFull==1 && FifoWrite==1 && FifoRead==0))begin
+			if(Fifo_errors != 00000)begin
 				error_out=1;
 				next_state=ERROR;
-			//end else if (FifoFull==1 && FifoWrite==1 && FifoRead==0) begin
-			//	error_out=1;
-			//	next_state=ERROR;
 			end else begin
 				error_out=0;
 				next_state=RESET;

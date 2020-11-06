@@ -5,10 +5,16 @@
 
 module BancoPruebas;
 
+parameter BITBUS=1;
+
 wire clk, reset;
 
-wire umbralMF, umbralVC, umbralD;
-wire FifoFull, FifoEmpty, FifoRead, FifoWrite;
+wire [4:0] Fifo_empties, Fifo_errors;
+
+wire [BITBUS-1:0] umbralMF, umbralVC, umbralD;
+
+wire [BITBUS-1:0] umbralMF_out, umbralVC_out, umbralD_out;
+wire [BITBUS-1:0] umbralMF_out_estr, umbralVC_out_estr, umbralD_out_estr;
 
 wire init_out, idle_out, active_out, error_out;
 wire idle_out_estr, active_out_estr, error_out_estr, init_out_estr;
@@ -16,13 +22,14 @@ wire [3:0] next_state, next_state_estr, state, state_estr;
 
 maquina maquina(.clk	(clk),
 		.reset	(reset),
-		.umbralMF	(umbralMF),
-		.umbralVC	(umbralVC),
-		.umbralD	(umbralD),
-		.FifoFull	(FifoFull),
-		.FifoEmpty	(FifoEmpty),
-		.FifoRead	(FifoRead),
-		.FifoWrite	(FifoWrite),
+		.umbralMF	(umbralMF[BITBUS-1:0]),
+		.umbralVC	(umbralVC[BITBUS-1:0]),
+		.umbralD	(umbralD[BITBUS-1:0]),
+		.umbralMF_out	(umbralMF_out[BITBUS-1:0]),
+		.umbralVC_out	(umbralVC_out[BITBUS-1:0]),
+		.umbralD_out	(umbralD_out[BITBUS-1:0]),
+		.Fifo_empties	(Fifo_empties[4:0]),
+		.Fifo_errors	(Fifo_errors[4:0]),
 		.init_out	(init_out),
 		.idle_out	(idle_out),
 		.active_out	(active_out),
@@ -32,13 +39,14 @@ maquina maquina(.clk	(clk),
 
 maquina_synth maquina_synth(.clk	(clk),
 		.reset	(reset),
-		.umbralMF	(umbralMF),
-		.umbralVC	(umbralVC),
-		.umbralD	(umbralD),
-		.FifoFull	(FifoFull),
-		.FifoEmpty	(FifoEmpty),
-		.FifoRead	(FifoRead),
-		.FifoWrite	(FifoWrite),
+		.umbralMF	(umbralMF[BITBUS-1:0]),
+		.umbralVC	(umbralVC[BITBUS-1:0]),
+		.umbralD	(umbralD[BITBUS-1:0]),
+		.umbralMF_out	(umbralMF_out_estr[BITBUS-1:0]),
+		.umbralVC_out	(umbralVC_out_estr[BITBUS-1:0]),
+		.umbralD_out	(umbralD_out_estr[BITBUS-1:0]),
+		.Fifo_empties	(Fifo_empties[4:0]),
+		.Fifo_errors	(Fifo_errors[4:0]),
 		.init_out	(init_out_estr),
 		.idle_out	(idle_out_estr),
 		.active_out	(active_out_estr),
@@ -48,13 +56,17 @@ maquina_synth maquina_synth(.clk	(clk),
 
 probador probador(.clk	(clk),
 		.reset	(reset),
-		.umbralMF	(umbralMF),
-		.umbralVC	(umbralVC),
-		.umbralD	(umbralD),
-		.FifoFull	(FifoFull),
-		.FifoEmpty	(FifoEmpty),
-		.FifoRead	(FifoRead),
-		.FifoWrite	(FifoWrite),
+		.umbralMF	(umbralMF[BITBUS-1:0]),
+		.umbralVC	(umbralVC[BITBUS-1:0]),
+		.umbralD	(umbralD[BITBUS-1:0]),
+		.umbralMF_out	(umbralMF_out[BITBUS-1:0]),
+		.umbralVC_out	(umbralVC_out[BITBUS-1:0]),
+		.umbralD_out	(umbralD_out[BITBUS-1:0]),
+		.Fifo_empties	(Fifo_empties[4:0]),
+		.Fifo_errors	(Fifo_errors[4:0]),
+		.umbralMF_out_estr	(umbralMF_out_estr[BITBUS-1:0]),
+		.umbralVC_out_estr	(umbralVC_out_estr[BITBUS-1:0]),
+		.umbralD_out_estr	(umbralD_out_estr[BITBUS-1:0]),
 		.init_out_estr	(init_out_estr),
 		.idle_out_estr	(idle_out_estr),
 		.active_out_estr	(active_out_estr),
