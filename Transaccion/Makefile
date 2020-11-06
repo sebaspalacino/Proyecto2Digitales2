@@ -28,6 +28,8 @@ YOSYS1:
 	sed -i 's/demux_id/demux_id_est/g' $(TEMP01)
 	sed -i 's/demux_t/demux_t_est/g' $(TEMP01)
 	sed -i 's/mux_dst/mux_dst_est/g' $(TEMP01)
+	sed -i 's/state/state_est/g' $(TEMP01)
+	sed -i 's/next_state_dst/next_state_est/g' $(TEMP01)
 wave:
 	gtkwave $(TARGET4)
 
