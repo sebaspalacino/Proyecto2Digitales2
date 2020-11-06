@@ -1,0 +1,178 @@
+[*]
+[*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
+[*] Thu Nov  5 23:28:29 2020
+[*]
+[dumpfile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/Transaccion/resultados.vcd"
+[dumpfile_mtime] "Thu Nov  5 23:22:45 2020"
+[dumpfile_size] 631630
+[savefile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/Transaccion/prueba.gtkw"
+[timestart] 0
+[size] 1920 1025
+[pos] -1 -1
+*-15.312785 23600 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] BancoPruebas.
+[treeopen] BancoPruebas.pcie_.
+[sst_width] 223
+[signals_width] 261
+[sst_expanded] 1
+[sst_vpaned_height] 302
+@200
+-Probador
+@28
+BancoPruebas.clk
+BancoPruebas.reset
+@22
+BancoPruebas.data_in[5:0]
+@28
+BancoPruebas.data_in[5:0]
+@22
+[color] 2
+BancoPruebas.pcie_.data_out0[5:0]
+@29
+BancoPruebas.push
+@200
+-Main Fifo
+@22
+[color] 2
+BancoPruebas.pcie_.Main_Fifo_Data_out[5:0]
+@28
+[color] 2
+BancoPruebas.pcie_.Main_valid_read
+[color] 2
+BancoPruebas.pcie_.pop_main
+[color] 2
+BancoPruebas.pcie_.Main_Fifo_error
+[color] 2
+BancoPruebas.pcie_.Main_almost_empty
+[color] 2
+BancoPruebas.pcie_.Main_almost_full
+[color] 2
+BancoPruebas.pcie_.Main_fifo_full
+[color] 2
+BancoPruebas.pcie_.Main_fifo_empty
+[color] 2
+BancoPruebas.pcie_.Main_pause
+@200
+-Demux_id
+@22
+[color] 5
+BancoPruebas.pcie_.demux_to_VC0[5:0]
+@28
+[color] 5
+BancoPruebas.pcie_.push_VC0
+@22
+[color] 5
+BancoPruebas.pcie_.demux_to_VC1[5:0]
+@28
+[color] 5
+BancoPruebas.pcie_.push_VC1
+@200
+-VC0
+@22
+[color] 2
+BancoPruebas.pcie_.VC0_Data_out[5:0]
+@28
+[color] 2
+BancoPruebas.pcie_.VC0_valid_read
+[color] 2
+BancoPruebas.pcie_.VC0_almost_full
+[color] 2
+BancoPruebas.pcie_.VC0_almost_empty
+[color] 2
+BancoPruebas.pcie_.VC0_empty
+[color] 2
+BancoPruebas.pcie_.VC0_full
+[color] 2
+BancoPruebas.pcie_.VC0_pause
+[color] 2
+BancoPruebas.pcie_.VC0_error
+@200
+-VC1
+@22
+[color] 2
+BancoPruebas.pcie_.VC1_Data_out[5:0]
+@28
+[color] 2
+BancoPruebas.pcie_.VC1_valid_read
+[color] 2
+BancoPruebas.pcie_.VC1_almost_full
+[color] 2
+BancoPruebas.pcie_.VC1_almost_empty
+[color] 2
+BancoPruebas.pcie_.VC1_full
+[color] 2
+BancoPruebas.pcie_.VC1_empty
+[color] 2
+BancoPruebas.pcie_.VC1_pause
+[color] 2
+BancoPruebas.pcie_.VC1_error
+@200
+-Mux
+@22
+[color] 5
+BancoPruebas.pcie_.Mux_out[5:0]
+@28
+[color] 5
+BancoPruebas.pcie_.Mux_valid
+@200
+-Demux
+@22
+[color] 5
+BancoPruebas.pcie_.demux_to_D0[5:0]
+@28
+[color] 5
+BancoPruebas.pcie_.push_D0
+@22
+[color] 5
+BancoPruebas.pcie_.demux_to_D1[5:0]
+@28
+[color] 5
+BancoPruebas.pcie_.push_D1
+@200
+-D0
+@28
+[color] 2
+BancoPruebas.pcie_.D0_almost_empty
+[color] 2
+BancoPruebas.pcie_.D0_almost_full
+[color] 2
+BancoPruebas.pcie_.D0_empty
+[color] 2
+BancoPruebas.pcie_.D0_full
+[color] 2
+BancoPruebas.pcie_.D0_pause
+[color] 2
+BancoPruebas.pcie_.D0_error
+@22
+[color] 2
+BancoPruebas.pcie_.data_out0[5:0]
+BancoPruebas.pcie_est.data_out0_est[5:0]
+@28
+[color] 2
+BancoPruebas.pcie_.D0_valid_read
+@200
+-D1
+@28
+[color] 2
+BancoPruebas.pcie_.D1_almost_empty
+[color] 2
+BancoPruebas.pcie_.D1_almost_full
+[color] 2
+BancoPruebas.pcie_.D1_empty
+[color] 2
+BancoPruebas.pcie_.D1_full
+[color] 2
+BancoPruebas.pcie_.D1_pause
+[color] 2
+BancoPruebas.pcie_.D1_error
+@22
+[color] 2
+BancoPruebas.pcie_.data_out1[5:0]
+BancoPruebas.pcie_est.data_out1_est[5:0]
+@28
+[color] 2
+BancoPruebas.pcie_.D1_valid_read
+BancoPruebas.pcie_.pop_D0
+BancoPruebas.pcie_.pop_D1
+[pattern_trace] 1
+[pattern_trace] 0
