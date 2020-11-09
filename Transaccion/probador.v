@@ -11,22 +11,24 @@ module probador #(parameter BITNUMBER = 8,
 	output reg [BITNUMBER-1:0] data_in,
 	output reg [LENGTH-1:0] Umbral_MF_prob,
 	output reg [LENGTH-1:0] Umbral_VC_prob, 
-	output reg [LENGTH-1:0] Umbral_D_prob);
+	output reg [LENGTH-1:0] Umbral_D_prob,
+	output reg init);
 
 initial begin
 	$dumpfile("resultados.vcd");
 	$dumpvars;
 
 	reset <= 1;
-	{push, pop_D0, pop_D1, data_in, Umbral_D_prob, Umbral_MF_prob, Umbral_VC_prob} <= 0;
+	{push, pop_D0, pop_D1, data_in, Umbral_D_prob, Umbral_MF_prob, Umbral_VC_prob, init} <= 0;
 	@(posedge clk);
 	@(posedge clk);
 	reset <=0;
 
 	@(posedge clk);
+	init <= 1;
 	Umbral_D_prob <= 1;
 	Umbral_MF_prob <= 1; 
-	Umbral_VC_prob <= 1;
+	Umbral_VC_prob <= 3;
 	data_in <= $random;
 	/*if(!Main_pause)
 		push <= 1;

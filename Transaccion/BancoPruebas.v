@@ -11,11 +11,11 @@ parameter BITNUMBER = 6;
 parameter LENGTH = 4;
 
 //Wires
-wire clk, reset, push, pop_D1, pop_D0, D0_can_pop, D1_can_pop, Main_pause;
+wire clk, reset, push, pop_D1, pop_D0, D0_can_pop, D1_can_pop, Main_pause, init;
 wire /*push, pop_D1, pop_D0,*/ D0_can_pop_est, D1_can_pop_est, Main_pause_est;
 wire [BITNUMBER-1:0] data_in, data_out0, data_out1,data_out0_est, data_out1_est;
 wire [LENGTH-1:0] Umbral_MF_prob, Umbral_VC_prob, Umbral_D_prob;
-output wire [3:0] state, next_state, next_state_est, state_est;
+wire [3:0] state, next_state, next_state_est, state_est;
 
 pcie_trans #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))pcie_(/*AUTOINST*/
 							    // Outputs
@@ -35,7 +35,8 @@ pcie_trans #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))pcie_(/*AUTOINST*/
 							    .pop_D1		(pop_D1),
 							    .Umbral_MF_prob	(Umbral_MF_prob[LENGTH-1:0]),
 							    .Umbral_VC_prob	(Umbral_VC_prob[LENGTH-1:0]),
-							    .Umbral_D_prob	(Umbral_D_prob[LENGTH-1:0]));
+							    .Umbral_D_prob	(Umbral_D_prob[LENGTH-1:0]),
+							    .init		(init));
 
 pcie_trans_est pcie_est(/*AUTOINST*/
 			// Outputs
@@ -52,6 +53,7 @@ pcie_trans_est pcie_est(/*AUTOINST*/
 			.Umbral_VC_prob	(Umbral_VC_prob[3:0]),
 			.clk		(clk),
 			.data_in	(data_in[5:0]),
+			.init		(init),
 			.pop_D0		(pop_D0),
 			.pop_D1		(pop_D1),
 			.push		(push),
@@ -69,6 +71,7 @@ probador #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))probador_(/*AUTOINST*/
 							      .Umbral_MF_prob	(Umbral_MF_prob[LENGTH-1:0]),
 							      .Umbral_VC_prob	(Umbral_VC_prob[LENGTH-1:0]),
 							      .Umbral_D_prob	(Umbral_D_prob[LENGTH-1:0]),
+							      .init		(init),
 							      // Inputs
 							      .Main_pause	(Main_pause),
 							      .D0_can_pop	(D0_can_pop),

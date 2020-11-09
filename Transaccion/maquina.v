@@ -6,6 +6,7 @@ module maquina#(parameter LENGTH = 1)
 		input [LENGTH-1:0] umbralD,
 		input [4:0] Fifo_empties,
 		input [4:0] Fifo_errors,
+		input init,
 		output reg init_out,
 		output reg idle_out,
 		output reg active_out,
@@ -23,7 +24,7 @@ parameter ACTIVE=3;
 parameter ERROR=4;
 
  always @ (posedge clk) begin
-        if(~reset) begin
+        if(reset) begin
             state <= RESET; 
           //  error_out <=0;
         end
@@ -34,10 +35,10 @@ parameter ERROR=4;
     end		
 
 always @(*) begin
-	idle_out=0;
-	active_out=0;
-	error_out=0;
-	next_state=state;
+	idle_out = 0;
+	active_out = 0;
+	error_out = 0;
+	next_state = state;
 	init_out = 0;
 	umbralMF_out = 0;
 	umbralVC_out = 0;
@@ -45,12 +46,15 @@ always @(*) begin
 	case(state)
 		RESET: begin
 		//For RESET state
+		if (reset)
+			next_state = RESET;
+		else
 			next_state= INIT;
 		end
 		
 		INIT: begin
 		//For INIT state
-			if(umbralMF || umbralVC || umbralD)begin
+			if(init)begin
 			//Si hay algun umbral ON, init_out se enciende
 				init_out=1;
 				umbralMF_out = umbralMF;
@@ -59,17 +63,17 @@ always @(*) begin
 				next_state= IDLE;
 			end else begin
 			//Si ningun umbral esta on, se vuelve a RESET e init_out se queda apagado
-				init_out=0;
+				init_out=init_out;
 				umbralMF_out = 0;
 				umbralVC_out = 0;
 				umbralD_out = 0;
-				next_state= RESET;
+				next_state= INIT;
 			end
 		end
 		
 		IDLE: begin
 		//For IDLE state
-			if(Fifo_empties == 5'b11111)begin 
+			if(Fifo_empties == 'b11111)begin 
 				idle_out=1;
 				next_state= IDLE;
 			end else begin
