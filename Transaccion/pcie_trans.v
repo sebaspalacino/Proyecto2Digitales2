@@ -11,6 +11,9 @@ module pcie_trans#(parameter BITNUMBER = 6,
     input push,
     input pop_D0,
     input pop_D1,
+	input [LENGTH-1:0] Umbral_MF_prob,
+	input [LENGTH-1:0] Umbral_VC_prob,
+	input [LENGTH-1:0] Umbral_D_prob,
     output wire [BITNUMBER-1:0] data_out0,
     output wire [BITNUMBER-1:0] data_out1,
     output wire D0_can_pop,
@@ -34,7 +37,7 @@ wire [4:0] Fifo_empties, Fifo_error;
 wire [LENGTH-1:0] Umbral_MF, Umbral_VC, Umbral_D;
 wire idle_out, active_out, error_out;
 //wire [3:0] state, next_state;
-wire [LENGTH-1:0] Umbral_MF_prob, Umbral_VC_prob, Umbral_D_prob;
+//wire [LENGTH-1:0] Umbral_MF_prob, Umbral_VC_prob, Umbral_D_prob;
 
 fifo #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))Main_fifo_(
 						      // Outputs

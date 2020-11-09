@@ -32,7 +32,10 @@ pcie_trans #(.BITNUMBER (BITNUMBER), .LENGTH (LENGTH))pcie_(/*AUTOINST*/
 							    .reset		(reset),
 							    .push		(push),
 							    .pop_D0		(pop_D0),
-							    .pop_D1		(pop_D1));
+							    .pop_D1		(pop_D1),
+							    .Umbral_MF_prob	(Umbral_MF_prob[LENGTH-1:0]),
+							    .Umbral_VC_prob	(Umbral_VC_prob[LENGTH-1:0]),
+							    .Umbral_D_prob	(Umbral_D_prob[LENGTH-1:0]));
 
 pcie_trans_est pcie_est(/*AUTOINST*/
 			// Outputs
@@ -44,6 +47,9 @@ pcie_trans_est pcie_est(/*AUTOINST*/
 			.next_state_est	(next_state_est[3:0]),
 			.state_est	(state_est[3:0]),
 			// Inputs
+			.Umbral_D_prob	(Umbral_D_prob[3:0]),
+			.Umbral_MF_prob	(Umbral_MF_prob[3:0]),
+			.Umbral_VC_prob	(Umbral_VC_prob[3:0]),
 			.clk		(clk),
 			.data_in	(data_in[5:0]),
 			.pop_D0		(pop_D0),

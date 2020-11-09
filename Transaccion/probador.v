@@ -24,7 +24,9 @@ initial begin
 	reset <=0;
 
 	@(posedge clk);
-	{Umbral_D_prob, Umbral_MF_prob, Umbral_VC_prob} <= 1;
+	Umbral_D_prob <= 1;
+	Umbral_MF_prob <= 1; 
+	Umbral_VC_prob <= 1;
 	data_in <= $random;
 	/*if(!Main_pause)
 		push <= 1;
