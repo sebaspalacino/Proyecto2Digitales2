@@ -25,24 +25,30 @@ parameter ERROR=4;
 
  always @ (posedge clk) begin
         if(reset) begin
-            state <= RESET; 
+            state <= RESET;
+			umbralMF_out <= 0;
+			umbralVC_out <= 0;
+			umbralD_out <= 0; 
           //  error_out <=0;
         end
         else begin
+			umbralMF_out <= umbralMF_o;
+			umbralVC_out <= umbralVC_o;
+			umbralD_out <= umbralD_o;
             state <= next_state;
             
         end
     end		
-
+reg [LENGTH-1:0] umbralMF_o, umbralVC_o, umbralD_o;
 always @(*) begin
 	idle_out = 0;
 	active_out = 0;
 	error_out = 0;
 	next_state = state;
 	init_out = 0;
-	umbralMF_out = 0;
-	umbralVC_out = 0;
-	umbralD_out = 0;
+	umbralMF_o = umbralMF_out;
+	umbralVC_o = umbralVC_out;
+	umbralD_o = umbralD_out;
 	case(state)
 		RESET: begin
 		//For RESET state
@@ -54,25 +60,18 @@ always @(*) begin
 		
 		INIT: begin
 		//For INIT state
-			if(init)begin
-			//Si hay algun umbral ON, init_out se enciende
-				init_out=1;
-				umbralMF_out = umbralMF;
-				umbralVC_out = umbralVC;
-				umbralD_out = umbralD;
-				next_state= IDLE;
-			end else begin
-			//Si ningun umbral esta on, se vuelve a RESET e init_out se queda apagado
-				init_out=init_out;
-				umbralMF_out = 0;
-				umbralVC_out = 0;
-				umbralD_out = 0;
-				next_state= INIT;
-			end
+			init_out=1;
+			umbralMF_o = umbralMF;
+			umbralVC_o = umbralVC;
+			umbralD_o = umbralD;
+			next_state= IDLE;
 		end
 		
 		IDLE: begin
 		//For IDLE state
+		if(init)
+			next_state= INIT;
+		else begin
 			if(Fifo_empties == 'b11111)begin 
 				idle_out=1;
 				next_state= IDLE;
@@ -81,9 +80,13 @@ always @(*) begin
 				next_state= ACTIVE;
 			end 
 		end
+		end
 		
 		ACTIVE: begin
 		//For ACTIVE state
+		if (init)
+			next_state = INIT;
+		else begin
 			if(Fifo_errors == 00000) begin //Si el fifo no esta ni lleno, ni vacio, osea que tiene informacion adentro que se puede transmitir
 				active_out=1;
 				next_state=ACTIVE;
@@ -92,6 +95,7 @@ always @(*) begin
 				active_out=0;
 				next_state=ERROR; 	
 			end 
+		end
 			
 		end
 		
