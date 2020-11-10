@@ -56,6 +56,9 @@ initial begin
 	else 
 		push <= 0;	
 	@(posedge clk);
+	Umbral_D_prob <= 4;
+	Umbral_MF_prob <= 6; 
+	Umbral_VC_prob <= 0;
 	data_in <= $random| 'b010000;
 	if(!Main_pause)
 		push <= 1;

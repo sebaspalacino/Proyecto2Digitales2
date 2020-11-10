@@ -1,15 +1,15 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Fri Nov  6 23:16:52 2020
+[*] Tue Nov 10 01:16:27 2020
 [*]
 [dumpfile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/Transaccion/resultados.vcd"
-[dumpfile_mtime] "Fri Nov  6 23:16:27 2020"
-[dumpfile_size] 646894
+[dumpfile_mtime] "Tue Nov 10 01:15:40 2020"
+[dumpfile_size] 657535
 [savefile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/Transaccion/prueba.gtkw"
 [timestart] 0
-[size] 1440 759
-[pos] 372 -182
-*-16.312786 199400 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1920 1025
+[pos] -1 -1
+*-15.402794 100200 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] BancoPruebas.
 [treeopen] BancoPruebas.pcie_.
 [treeopen] BancoPruebas.pcie_.D0_.
@@ -29,7 +29,9 @@ BancoPruebas.data_in[5:0]
 @22
 [color] 2
 BancoPruebas.pcie_.data_out0[5:0]
+BancoPruebas.data_out0_est[5:0]
 BancoPruebas.pcie_.data_out1[5:0]
+BancoPruebas.data_out1_est[5:0]
 @28
 BancoPruebas.push
 @200
@@ -143,7 +145,6 @@ BancoPruebas.pcie_.D0_empty
 BancoPruebas.pcie_.D0_full
 [color] 2
 BancoPruebas.pcie_.D0_pause
-@29
 [color] 2
 BancoPruebas.pcie_.D0_error
 @22
@@ -180,12 +181,40 @@ BancoPruebas.pcie_.pop_D1
 @200
 -Maquina Estados
 @28
-BancoPruebas.pcie_.Fifo_empties[4:0]
-BancoPruebas.pcie_.Fifo_error[4:0]
-@22
+BancoPruebas.pcie_.maquina_.reset
+@c00022
+[color] 7
 BancoPruebas.state[3:0]
+@28
+(0)BancoPruebas.state[3:0]
+(1)BancoPruebas.state[3:0]
+(2)BancoPruebas.state[3:0]
+(3)BancoPruebas.state[3:0]
+@1401200
+-group_end
+@22
 BancoPruebas.state_est[3:0]
-BancoPruebas.pcie_.maquina_.next_state[3:0]
+[color] 7
+BancoPruebas.next_state[3:0]
 BancoPruebas.next_state_est[3:0]
+@28
+[color] 7
+BancoPruebas.pcie_.maquina_.Fifo_empties[4:0]
+[color] 7
+BancoPruebas.pcie_.maquina_.Fifo_errors[4:0]
+[color] 7
+BancoPruebas.pcie_.maquina_.init
+@22
+BancoPruebas.Umbral_MF_prob[3:0]
+@23
+BancoPruebas.Umbral_VC_prob[3:0]
+@22
+BancoPruebas.Umbral_D_prob[3:0]
+[color] 7
+BancoPruebas.pcie_.maquina_.umbralMF_out[3:0]
+[color] 7
+BancoPruebas.pcie_.maquina_.umbralVC_out[3:0]
+[color] 7
+BancoPruebas.pcie_.maquina_.umbralD_out[3:0]
 [pattern_trace] 1
 [pattern_trace] 0
