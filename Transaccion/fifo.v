@@ -18,12 +18,15 @@ module fifo #(parameter BITNUMBER = 6,
   output reg almost_empty,
   output wire can_pop,
   output wire pause, 
-  output reg valid_read
+  output reg valid_read,
+  output reg [(LENGTH/4)+1:0]cont, 
+  output reg [(LENGTH/4)+1:0] conor,
+  output reg [8:0] test
   );
 
 reg to_empty, q_wt, q_rd, v1;
 reg [((LENGTH/6)+(1)):0] rd_ptr, wr_ptr,  q_w, q_r; // Formula magica que deja un indice que se redondea a 1 (1.67) cuando LENGTH = 4 y a 3 (3.67) cuando LENGTH = 16.
-reg [(LENGTH/4)+1:0] elementos, contador, cont, conor;
+reg [(LENGTH/4)+1:0] elementos, contador/*cont, conor*/;
 wire [BITNUMBER-1:0] q1;
 reg [BITNUMBER-1:0] q0;
 
@@ -40,8 +43,10 @@ always @(posedge clk) begin
         q_wt <= 0;
         v1 <= 0;
         conor <= 0;
+        test <= 0;
     end
     else begin  
+        test <= LENGTH - Umbral;
         conor <= cont;
         q_w <= wr_ptr;
         q_r <= rd_ptr;
@@ -86,7 +91,7 @@ always @(posedge clk) begin
             Fifo_empty <= 1;
         else
             Fifo_empty <= 0;
-        if (cont == LENGTH - Umbral)
+        if (cont == (LENGTH - Umbral))
             almost_full <= 1;
         else 
             almost_full <= 0;

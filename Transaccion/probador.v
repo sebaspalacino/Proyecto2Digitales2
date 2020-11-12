@@ -89,7 +89,6 @@ initial begin
 	else 
 		push <= 0;	
 	@(posedge clk);
-	init <= 1;
 	Umbral_D_prob <= 2;
 	Umbral_MF_prob <= 2; 
 	Umbral_VC_prob <= 2;
@@ -99,7 +98,6 @@ initial begin
 	else 
 		push <= 0;	
 	@(posedge clk);
-	init <= 0;
 	data_in <= $random;
 	if(!Main_pause)
 		push <= 1;
@@ -137,7 +135,16 @@ initial begin
 		push <= 1;
 	else 
 		push <= 0;	
-	@(posedge clk);push<=0;@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+	@(posedge clk);
+	push<=0;
+	@(posedge clk);
+	//pop_D0 <= 0;
+	//pop_D1 <= 0;
+	@(posedge clk);
+	init <= 1;
+	@(posedge clk);
+	init <= 0;
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
 	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
 	$finish;	
 end

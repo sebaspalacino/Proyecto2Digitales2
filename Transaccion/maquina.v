@@ -103,8 +103,8 @@ always @(*) begin
 		//For ERROR state
 			if(Fifo_errors != 00000)begin
 				error_out=1;
-				next_state=ERROR;
-			end else begin
+				next_state=ERROR;end
+			if (reset) begin
 				error_out=0;
 				next_state=RESET;
 			end		

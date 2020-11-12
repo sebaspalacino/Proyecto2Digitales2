@@ -1,22 +1,32 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Thu Nov 12 00:39:24 2020
+[*] Thu Nov 12 04:10:45 2020
 [*]
 [dumpfile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/Transaccion/resultados.vcd"
-[dumpfile_mtime] "Wed Nov 11 23:38:48 2020"
-[dumpfile_size] 657721
+[dumpfile_mtime] "Thu Nov 12 04:10:02 2020"
+[dumpfile_size] 675892
 [savefile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/Transaccion/prueba.gtkw"
 [timestart] 0
 [size] 1920 1025
 [pos] -1 -1
-*-15.402794 58900 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+*-15.402794 18100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] BancoPruebas.
-[treeopen] BancoPruebas.pcie_.
-[treeopen] BancoPruebas.pcie_.D0_.
+[treeopen] BancoPruebas.pcie_.Main_fifo_.
+[treeopen] BancoPruebas.pcie_est.
+[treeopen] BancoPruebas.pcie_est.Main_fifo_est_.
 [sst_width] 223
 [signals_width] 261
 [sst_expanded] 1
 [sst_vpaned_height] 208
+@22
+BancoPruebas.pcie_.Main_fifo_.Umbral[3:0]
+BancoPruebas.pcie_.Main_fifo_.test[8:0]
+BancoPruebas.pcie_est.Main_fifo_est_.test[8:0]
+@24
+BancoPruebas.pcie_.Main_fifo_.cont[2:0]
+BancoPruebas.pcie_est.Main_fifo_est_.cont[2:0]
+@28
+BancoPruebas.pcie_est.Main_fifo_est_.conor[2:0]
 @200
 -Probador
 @28
@@ -210,10 +220,8 @@ BancoPruebas.next_state_est[3:0]
 @28
 [color] 7
 BancoPruebas.pcie_.maquina_.Fifo_empties[4:0]
-@29
 [color] 7
 BancoPruebas.pcie_.maquina_.Fifo_errors[4:0]
-@28
 [color] 7
 BancoPruebas.pcie_.maquina_.init
 @22

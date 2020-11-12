@@ -188,9 +188,9 @@ maquina #(.LENGTH (LENGTH))maquina_(
 							.idle_out		(idle_out),
 							.active_out		(active_out),
 							.error_out		(error_out),
-							.umbralMF_out 	(Umbral_MF[LENGTH-1:0]),
-							.umbralVC_out	(Umbral_VC[LENGTH-1:0]),
-							.umbralD_out	(Umbral_D[LENGTH-1:0]),
+							// .umbralMF_out 	(Umbral_MF[LENGTH-1:0]),
+							// .umbralVC_out	(Umbral_VC[LENGTH-1:0]),
+							// .umbralD_out	(Umbral_D[LENGTH-1:0]),
 							.state			(state[3:0]),
 							.next_state		(next_state[3:0]),
 							// Inputs
@@ -208,9 +208,9 @@ assign pop_VC0 = !(D0_pause || D1_pause) && !(VC0_empty);
 assign pop_VC1 = !(D0_pause || D1_pause) && !(VC1_empty) && (VC0_empty); 
 
 // Para la maquina de estados
-// assign Umbral_D = 1;
-// assign Umbral_VC = 1;
-// assign Umbral_MF = 1;
+assign Umbral_D = 1;
+assign Umbral_VC = 3;
+assign Umbral_MF = 1;
 
 assign Fifo_empties[0] = Main_fifo_empty;
 assign Fifo_empties[1] = VC0_empty;
