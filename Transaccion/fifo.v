@@ -23,7 +23,7 @@ module fifo #(parameter BITNUMBER = 6,
 
 reg to_empty, q_wt, q_rd, v1;
 reg [((LENGTH/6)+(1)):0] rd_ptr, wr_ptr,  q_w, q_r; // Formula magica que deja un indice que se redondea a 1 (1.67) cuando LENGTH = 4 y a 3 (3.67) cuando LENGTH = 16.
-reg [(LENGTH/4)+1:0] elementos, contador;
+reg [(LENGTH/4)+1:0] elementos, contador, cont, conor;
 wire [BITNUMBER-1:0] q1;
 reg [BITNUMBER-1:0] q0;
 
@@ -32,15 +32,17 @@ always @(posedge clk) begin
         {wr_ptr, rd_ptr, Fifo_rd_error, Fifo_wr_error, /*Fifo_error,*/ Fifo_full, /*Fifo_Data_out,*/ almost_empty, almost_full, valid_read, elementos} <= 0;
         Fifo_Data_out <= 0;
         Fifo_empty <= 1;
-        contador <= 0;
+        contador <= 0; // no se usa
         almost_empty <= 0;
         valid_read <= 0;
         q0 <= 0;
         q_w <= 0;
         q_wt <= 0;
         v1 <= 0;
+        conor <= 0;
     end
-    else begin
+    else begin  
+        conor <= cont;
         q_w <= wr_ptr;
         q_r <= rd_ptr;
         q_rd <= Fifo_rd;
@@ -51,7 +53,7 @@ always @(posedge clk) begin
 
         if (Fifo_wr && !Fifo_full) begin
             wr_ptr <= wr_ptr + 1;
-            contador = contador +1;
+            //contador = contador +1; era un <= y me di cuenta muy tarde 
             Fifo_wr_error <= 0;
             q0 <= Fifo_Data_in; 
         end
@@ -65,7 +67,7 @@ always @(posedge clk) begin
         end
         if(Fifo_rd && !Fifo_empty) begin // pop
             rd_ptr <= rd_ptr + 1;
-            contador = contador -1;
+            //contador = contador -1;
             Fifo_rd_error <= 0; 
             //Fifo_Data_out <= q1;
             v1 <= 1;
@@ -76,19 +78,19 @@ always @(posedge clk) begin
         else begin
             Fifo_rd_error <= 0; // si comento esto la señal se mantiene hasta el proximo read sin error
         end 
-        if (contador == LENGTH)
+        if (cont == LENGTH)
             Fifo_full <= 1;
         else 
             Fifo_full <= 0;
-        if (contador == 0)
+        if (cont == 0)
             Fifo_empty <= 1;
         else
             Fifo_empty <= 0;
-        if (contador == LENGTH - Umbral)
+        if (cont == LENGTH - Umbral)
             almost_full <= 1;
         else 
             almost_full <= 0;
-        if (contador == Umbral)
+        if (cont == Umbral)
             almost_empty <= 1;
         else
             almost_empty <= 0;
@@ -96,6 +98,14 @@ always @(posedge clk) begin
     end
 end
 assign Fifo_error = Fifo_rd_error | Fifo_wr_error; 
+
+always @(*) begin
+    cont = conor;
+    if(Fifo_rd && !Fifo_empty) // pop
+        cont = cont - 1;
+    if (Fifo_wr && !Fifo_full)
+        cont = cont + 1;
+end
 memoria #(.BITNUMBER(BITNUMBER), .LENGTH(LENGTH)) memoria (.data_in	(q0),
 		.data_out	(q1),
 		.ptr_write	(wr_ptr),
