@@ -9,9 +9,9 @@ module probador #(parameter BITNUMBER = 8,
 	output reg pop_D1,
 	output reg pop_D0,
 	output reg [BITNUMBER-1:0] data_in,
-	output reg [LENGTH-1:0] Umbral_MF_prob,
-	output reg [LENGTH-1:0] Umbral_VC_prob, 
-	output reg [LENGTH-1:0] Umbral_D_prob,
+	output reg [3:0] Umbral_MF_prob,
+	output reg [3:0] Umbral_VC_prob, 
+	output reg [3:0] Umbral_D_prob,
 	output reg init);
 
 initial begin

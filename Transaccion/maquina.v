@@ -1,9 +1,9 @@
 module maquina#(parameter LENGTH = 1)
 		(input clk,
 		input reset,
-		input [LENGTH-1:0] umbralMF,
-		input [LENGTH-1:0] umbralVC,
-		input [LENGTH-1:0] umbralD,
+		input [3:0] umbralMF,
+		input [3:0] umbralVC,
+		input [3:0] umbralD,
 		input [4:0] Fifo_empties,
 		input [4:0] Fifo_errors,
 		input init,
@@ -11,9 +11,9 @@ module maquina#(parameter LENGTH = 1)
 		output reg idle_out,
 		output reg active_out,
 		output reg error_out,
-		output reg [LENGTH-1:0] umbralMF_out,
-		output reg [LENGTH-1:0] umbralVC_out,
-		output reg [LENGTH-1:0] umbralD_out,
+		output reg [3:0] umbralMF_out,
+		output reg [3:0] umbralVC_out,
+		output reg [3:0] umbralD_out,
 		output reg [3:0] state, 
 		output reg [3:0]next_state);
 
@@ -22,19 +22,27 @@ parameter INIT =1;
 parameter IDLE =2;
 parameter ACTIVE=3;
 parameter ERROR=4;
+reg update;
 
  always @ (posedge clk) begin
         if(reset) begin
             state <= RESET;
 			umbralMF_out <= 0;
 			umbralVC_out <= 0;
-			umbralD_out <= 0; 
+			umbralD_out <= 0;
           //  error_out <=0;
         end
         else begin
-			umbralMF_out <= umbralMF_o;
-			umbralVC_out <= umbralVC_o;
-			umbralD_out <= umbralD_o;
+			if (update) begin
+				umbralMF_out <= umbralMF;
+				umbralVC_out <= umbralVC;
+				umbralD_out <= umbralD;
+			end
+			else begin
+				umbralMF_out <= umbralMF_out;
+				umbralVC_out <= umbralVC_out;
+				umbralD_out <= umbralD_out;
+			end
             state <= next_state;
             
         end
@@ -46,9 +54,7 @@ always @(*) begin
 	error_out = 0;
 	next_state = state;
 	init_out = 0;
-	umbralMF_o = umbralMF_out;
-	umbralVC_o = umbralVC_out;
-	umbralD_o = umbralD_out;
+	update = 0;
 	case(state)
 		RESET: begin
 		//For RESET state
@@ -61,9 +67,7 @@ always @(*) begin
 		INIT: begin
 		//For INIT state
 			init_out=1;
-			umbralMF_o = umbralMF;
-			umbralVC_o = umbralVC;
-			umbralD_o = umbralD;
+			update = 1;
 			next_state= IDLE;
 		end
 		
@@ -72,6 +76,7 @@ always @(*) begin
 		if(init)
 			next_state= INIT;
 		else begin
+			update = 0;
 			if(Fifo_empties == 'b11111)begin 
 				idle_out=1;
 				next_state= IDLE;
@@ -84,9 +89,9 @@ always @(*) begin
 		
 		ACTIVE: begin
 		//For ACTIVE state
-		if (init)
+		if (init == 1)
 			next_state = INIT;
-		else begin
+		else if (init == 0) begin
 			if(Fifo_errors == 00000) begin //Si el fifo no esta ni lleno, ni vacio, osea que tiene informacion adentro que se puede transmitir
 				active_out=1;
 				next_state=ACTIVE;
