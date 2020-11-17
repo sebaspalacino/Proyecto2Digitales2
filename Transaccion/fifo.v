@@ -23,7 +23,7 @@ module fifo #(parameter BITNUMBER = 6,
   output reg [(LENGTH/4)+1:0] conor,
   output reg [8:0] test
   );
-
+/*FIFO con control de flujo*/
 reg to_empty, q_wt, q_rd, v1;
 reg [((LENGTH/6)+(1)):0] rd_ptr, wr_ptr,  q_w, q_r; // Formula magica que deja un indice que se redondea a 1 (1.67) cuando LENGTH = 4 y a 3 (3.67) cuando LENGTH = 16.
 reg [(LENGTH/4)+1:0] elementos, contador/*cont, conor*/;

@@ -30,18 +30,10 @@ initial begin
 	Umbral_MF_prob <= 1; 
 	Umbral_VC_prob <= 3;
 	data_in <= $random;
-	/*if(!Main_pause)
-		push <= 1;
-	else 
-		push <= 0;*/
 	push <= 1;
 	@(posedge clk);
 	init <= 0;
 	data_in <= $random;
-	/*if(!Main_pause)
-		push <= 1;
-	else 
-		push <= 0;*/
 	push <= 1;	
 	@(posedge clk);
 	data_in <= $random | 'b010000;

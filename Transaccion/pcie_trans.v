@@ -207,7 +207,7 @@ assign pop_main = !(VC0_pause || VC1_pause) && !(Main_fifo_empty);
 assign pop_VC0 = !(D0_pause || D1_pause) && !(VC0_empty); 
 assign pop_VC1 = !(D0_pause || D1_pause) && !(VC1_empty) && (VC0_empty); 
 
-// Para la maquina de estados
+// Para probar antes de conectar la maquina de estados
 // assign Umbral_D = 1;
 // assign Umbral_VC = 1;
 // assign Umbral_MF = 1;

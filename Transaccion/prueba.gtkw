@@ -1,23 +1,24 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Thu Nov 12 04:44:01 2020
+[*] Tue Nov 17 00:43:17 2020
 [*]
 [dumpfile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/Transaccion/resultados.vcd"
-[dumpfile_mtime] "Thu Nov 12 04:43:18 2020"
-[dumpfile_size] 675892
+[dumpfile_mtime] "Tue Nov 17 00:43:09 2020"
+[dumpfile_size] 663722
 [savefile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/Transaccion/prueba.gtkw"
 [timestart] 0
-[size] 1920 1025
-[pos] -1 -1
-*-15.402794 111500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[size] 1440 759
+[pos] 848 137
+*-15.402794 59500 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] BancoPruebas.
 [treeopen] BancoPruebas.pcie_.Main_fifo_.
 [treeopen] BancoPruebas.pcie_est.
+[treeopen] BancoPruebas.pcie_est.D0_.
 [treeopen] BancoPruebas.pcie_est.maquina_.
 [sst_width] 223
 [signals_width] 261
 [sst_expanded] 1
-[sst_vpaned_height] 208
+[sst_vpaned_height] 143
 @22
 BancoPruebas.pcie_.Main_fifo_.Umbral[3:0]
 BancoPruebas.pcie_.Main_fifo_.test[8:0]

@@ -30,7 +30,6 @@ reg update;
 			umbralMF_out <= 0;
 			umbralVC_out <= 0;
 			umbralD_out <= 0;
-          //  error_out <=0;
         end
         else begin
 			if (update) begin
