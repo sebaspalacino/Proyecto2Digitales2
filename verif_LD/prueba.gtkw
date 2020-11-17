@@ -1,16 +1,17 @@
 [*]
 [*] GTKWave Analyzer v3.3.86 (w)1999-2017 BSI
-[*] Sat Nov 14 20:03:46 2020
+[*] Tue Nov 17 00:30:55 2020
 [*]
 [dumpfile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/verif_LD/resultados.vcd"
-[dumpfile_mtime] "Sat Nov 14 20:02:43 2020"
-[dumpfile_size] 801044
+[dumpfile_mtime] "Tue Nov 17 00:28:43 2020"
+[dumpfile_size] 1048125
 [savefile] "/home/luis/Documents/digitales2/proyecto2/Proyecto2Digitales2/verif_LD/prueba.gtkw"
-[timestart] 1054000
+[timestart] 1508300
 [size] 1360 740
-[pos] -18 -12
-*-15.278950 1105400 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] 140 273
+*-15.278950 1623100 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] BancoPruebas.
+[treeopen] BancoPruebas.pcie_.
 [treeopen] BancoPruebas.pcie_.Main_fifo_.
 [treeopen] BancoPruebas.pcie_est.
 [treeopen] BancoPruebas.pcie_est.Main_fifo_est_.
@@ -39,18 +40,6 @@ BancoPruebas.data_in[5:0]
 @28
 (0)BancoPruebas.data_in[5:0]
 (1)BancoPruebas.data_in[5:0]
-@22
-[color] 2
-BancoPruebas.pcie_.data_out0[5:0]
-@28
-BancoPruebas.pcie_est.D0_.valid_read
-@22
-BancoPruebas.data_out0_est[5:0]
-BancoPruebas.pcie_.data_out1[5:0]
-@28
-BancoPruebas.pcie_est.D1_.valid_read
-@22
-BancoPruebas.data_out1_est[5:0]
 @200
 -Main Fifo
 @22
@@ -61,14 +50,14 @@ BancoPruebas.pcie_.Main_Fifo_Data_out[5:0]
 BancoPruebas.pcie_.Main_almost_empty
 [color] 2
 BancoPruebas.pcie_.Main_almost_full
-@29
 [color] 2
 BancoPruebas.pcie_.Main_fifo_full
-@28
 [color] 2
 BancoPruebas.pcie_.Main_fifo_empty
 [color] 2
 BancoPruebas.pcie_.Main_pause
+@29
+BancoPruebas.pcie_.Main_fifo_.Fifo_wr_error
 @200
 -Demux_id
 @22
@@ -167,6 +156,7 @@ BancoPruebas.pcie_est.data_out0_est[5:0]
 @28
 [color] 2
 BancoPruebas.pcie_.D0_valid_read
+BancoPruebas.pcie_est.D0_.Fifo_rd_error
 @200
 -D1
 @28
@@ -189,6 +179,7 @@ BancoPruebas.pcie_est.data_out1_est[5:0]
 @28
 [color] 2
 BancoPruebas.pcie_.D1_valid_read
+BancoPruebas.pcie_est.D1_.Fifo_rd_error
 BancoPruebas.pcie_.pop_D0
 BancoPruebas.pcie_.pop_D1
 @200

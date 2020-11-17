@@ -96,7 +96,7 @@ initial begin
 	push <= 0;
 	data_in <= 'b000100;
 
-// Lleno VC0
+// Lleno VC0 y VC1 alternadamente
 	repeat (32) begin
 		@(posedge clk);
 		alternador <= alternador + 1;
@@ -113,16 +113,6 @@ initial begin
 		else 
 			push <= 0;
 	end
-
-/*// LLeno VC1
-	repeat (16) begin
-		@(posedge clk);
-		data_in <= data_in + 1 | 'b100000;
-		if(!Main_pause)
-			push <= 1;
-		else 
-			push <= 0;
-	end*/
 
 // Lleno el main fifo
 	@(posedge clk);
@@ -151,11 +141,14 @@ initial begin
 		push <= 0;
 	@(posedge clk)
 	push <= 0;
+	// Tiempo a los datos de llegar a todos los FIFOS
 	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
 	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
 	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
 	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
 	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+
+	// Vacío todo
 	pop_D0 <= 1;
 	pop_D1 <= 1;			
 	@(posedge clk);
@@ -165,6 +158,153 @@ initial begin
 	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
 	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
 	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+
+	reset <= 1;
+	{push, pop_D0, pop_D1, data_in, Umbral_D_prob, Umbral_MF_prob, Umbral_VC_prob, init, alternador} <= 0;
+	@(posedge clk);
+	@(posedge clk);
+	reset <=0;
+// Lleno D0 Y D1 alternadamente
+	@(posedge clk);
+	init <= 1;
+	Umbral_D_prob <= 1;
+	Umbral_MF_prob <= 1; 
+	Umbral_VC_prob <= 1;
+	data_in <= 'b000001;
+	push <= 1;
+
+	@(posedge clk);
+	init <= 0;
+	data_in <= 'b010000;
+	if(!Main_pause)
+		push <= 1;
+	else 
+		push <= 0;
+
+
+	@(posedge clk);
+	init <= 0;
+	data_in <= 'b000010;
+	if(!Main_pause)
+		push <= 1;
+	else 
+		push <= 0;
+
+	
+	@(posedge clk);
+	init <= 0;
+	data_in <= 'b010010;
+	if(!Main_pause)
+		push <= 1;
+	else 
+		push <= 0;
+	
+	@(posedge clk);
+	init <= 0;
+	data_in <= 'b00011;
+	if(!Main_pause)
+		push <= 1;
+	else 
+		push <= 0;
+	
+	@(posedge clk);
+	init <= 0;
+	data_in <= 'b010011;
+	if(!Main_pause)
+		push <= 1;
+	else 
+		push <= 0;
+
+
+	@(posedge clk);
+	init <= 0;
+	data_in <= 'b000100;
+	if(!Main_pause)
+		push <= 1;
+	else 
+		push <= 0;
+	
+	@(posedge clk);
+	init <= 0;
+	data_in <= 'b010101;
+	if(!Main_pause)
+		push <= 1;
+	else 
+		push <= 0;
+
+// Pongo un valor nuevo en data in
+	@(posedge clk);
+	push <= 0;
+	data_in <= 'b000100;
+
+// Lleno VC0 y VC1 alternadamente
+	repeat (32) begin
+		@(posedge clk);
+		alternador <= alternador + 1;
+		if (alternador == 0) begin
+			data_in[4:0] <= data_in[4:0] + 1;
+			data_in[5] <= 0; // A VC0
+		end
+		else begin
+			data_in[4:0] <= data_in[4:0] + 1;
+			data_in[5] <= 1; // A VC0
+		end
+		if(!Main_pause)
+			push <= 1;
+		else 
+			push <= 0;
+	end
+
+// Lleno el main fifo
+	@(posedge clk);
+	data_in <= 'b111111;
+	if(!Main_pause)
+		push <= 1;
+	else 
+		push <= 0;
+	@(posedge clk);
+	data_in <= 'b111110;
+	if(!Main_pause)
+		push <= 1;
+	else 
+		push <= 0;	
+	@(posedge clk);
+	data_in <= 'b111101;
+	if(!Main_pause)
+		push <= 1;
+	else 
+		push <= 0;	
+	@(posedge clk);
+	data_in <= 'b111100;
+	if(!Main_pause)
+		push <= 1;
+	else 
+		push <= 0;
+	// Genera el error
+	@(posedge clk);
+	data_in <= 'b111111;
+	@(posedge clk)
+	push <= 0;
+	@(posedge clk);
+	// Tiempo a los datos de llegar a todos los FIFOS
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+
+	// Vacío todo
+	pop_D0 <= 1;
+	pop_D1 <= 1;			
+	@(posedge clk);
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
+	reset <= 1;
+	@(posedge clk);@(posedge clk);@(posedge clk);@(posedge clk);
 	$finish;	
 end
 
